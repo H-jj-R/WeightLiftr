@@ -7,12 +7,27 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/newWorkoutBut"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:text="Create New Workout"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editWorkoutBut"
+        app:layout_constraintHorizontal_bias="0.717"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.063" />
+
+    <Button
+        android:id="@+id/editWorkoutBut"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:text="Edit an Existing Workout"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/startWorkoutBut"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.765"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,72 +35,35 @@
         app:layout_constraintVertical_bias="0.622" />
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:text="Start a Workout"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.266"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
-        android:text="Create New Workout"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.717"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.063" />
-
-    <Button
-        android:id="@+id/button4"
+        android:id="@+id/pastWorkoutsBut"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:text="View Your Past Workouts"
         android:textAllCaps="false"
+        app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.217"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/newWorkoutBut"
         app:layout_constraintVertical_bias="0.053" />
 
     <Button
-        android:id="@+id/button6"
-        android:layout_width="356dp"
-        android:layout_height="99dp"
-        android:text="Suggestion 1"
+        android:id="@+id/startWorkoutBut"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:text="Start a Workout"
         android:textAllCaps="false"
+        app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toEndOf="@+id/pastWorkoutsBut"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
-
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="356dp"
-        android:layout_height="99dp"
-        android:text="Suggestion 2"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintVertical_bias="0.317" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/suggestedLab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Suggested For Today"
@@ -97,4 +75,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.589" />
+
+    <Button
+        android:id="@+id/suggestion1But"
+        android:layout_width="356dp"
+        android:layout_height="99dp"
+        android:text="Suggestion 1"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.74" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
