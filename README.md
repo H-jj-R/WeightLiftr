@@ -1,5 +1,4 @@
 # WeightLiftr
--
 In development for CI560 Mobile Application Development.
 
 Description
