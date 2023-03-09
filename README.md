@@ -1,6 +1,9 @@
-# WeightLiftr
-In development for CI560 Mobile Application Development.
+WeightLiftr
+-
+
 
 Description
 -
+
 A workout tracker app, developed in Android Studio.
+
