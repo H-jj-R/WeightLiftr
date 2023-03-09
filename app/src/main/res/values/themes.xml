@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="android:windowBackground">#37FFFFFF</item>
         <item name="colorPrimary">#70EE0000</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
