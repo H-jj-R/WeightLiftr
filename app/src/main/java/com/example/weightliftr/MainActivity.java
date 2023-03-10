@@ -13,22 +13,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button newWorkoutBut = (Button)findViewById(R.id.newWorkoutBut);
+        Button newWorkoutBut = (Button) findViewById(R.id.newWorkoutBut);
         newWorkoutBut.setOnClickListener(event ->
                 startActivity(new Intent(MainActivity.this, AddNewWorkout.class))
         );
 
-        Button editWorkoutBut = (Button)findViewById(R.id.editWorkoutBut);
+        Button editWorkoutBut = (Button) findViewById(R.id.editWorkoutBut);
         editWorkoutBut.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, EditWorkout.class))
         );
 
-        Button pastWorkoutsBut = (Button)findViewById(R.id.pastWorkoutsBut);
+        Button pastWorkoutsBut = (Button) findViewById(R.id.pastWorkoutsBut);
         pastWorkoutsBut.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, ViewPastWorkouts.class))
         );
 
-        Button startWorkoutBut = (Button)findViewById(R.id.startWorkoutBut);
+        Button startWorkoutBut = (Button) findViewById(R.id.startWorkoutBut);
         startWorkoutBut.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, StartWorkout.class))
         );
