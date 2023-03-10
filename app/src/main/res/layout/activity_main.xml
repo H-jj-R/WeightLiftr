@@ -77,7 +77,7 @@
         app:layout_constraintVertical_bias="0.589" />
 
     <Button
-        android:id="@+id/suggestion1But"
+        android:id="@+id/suggestionBut"
         android:layout_width="356dp"
         android:layout_height="99dp"
         android:text="Suggestion 1"

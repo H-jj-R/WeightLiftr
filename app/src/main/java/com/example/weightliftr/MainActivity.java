@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -19,18 +21,41 @@ public class MainActivity extends AppCompatActivity {
         );
 
         Button editWorkoutBut = (Button) findViewById(R.id.editWorkoutBut);
-        editWorkoutBut.setOnClickListener(v ->
+        editWorkoutBut.setOnClickListener(event ->
                 startActivity(new Intent(MainActivity.this, EditWorkout.class))
         );
 
         Button pastWorkoutsBut = (Button) findViewById(R.id.pastWorkoutsBut);
-        pastWorkoutsBut.setOnClickListener(v ->
+        pastWorkoutsBut.setOnClickListener(event ->
                 startActivity(new Intent(MainActivity.this, ViewPastWorkouts.class))
         );
 
         Button startWorkoutBut = (Button) findViewById(R.id.startWorkoutBut);
-        startWorkoutBut.setOnClickListener(v ->
+        startWorkoutBut.setOnClickListener(event ->
                 startActivity(new Intent(MainActivity.this, StartWorkout.class))
+        );
+
+        Button suggestionBut = (Button) findViewById(R.id.suggestionBut);
+        int rnd = new Random().nextInt(3);
+        Class c;
+        switch (rnd) {
+            case 0:
+                suggestionBut.setText("Create a New Workout?");
+                c = AddNewWorkout.class;
+                break;
+            case 1:
+                suggestionBut.setText("Edit an Existing Workout?");
+                c = EditWorkout.class;
+                break;
+            case 2:
+                suggestionBut.setText("View a Past Workout?");
+                c = ViewPastWorkouts.class;
+                break;
+            default:
+                c = null;
+        }
+        suggestionBut.setOnClickListener(event ->
+                startActivity(new Intent(MainActivity.this, c))
         );
     }
 }
