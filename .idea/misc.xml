@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1695" />
+        <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1695" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/drawable/white_back_icon.xml" value="0.1695" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout-v23/activity_add_new_workout.xml" value="0.1933876811594203" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/activity_add_new_workout.xml" value="0.264" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/activity_edit_workout.xml" value="0.4" />
-        <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/activity_start_workout.xml" value="0.4" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/activity_view_past_workout.xml" value="0.4" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/settings_activity.xml" value="0.25" />
