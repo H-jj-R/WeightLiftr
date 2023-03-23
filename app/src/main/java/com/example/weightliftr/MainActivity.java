@@ -40,15 +40,15 @@ public class MainActivity extends AppCompatActivity {
         Class c;
         switch (rnd) {
             case 0:
-                suggestionBut.setText("Create a New Workout?");
+                suggestionBut.setText(newWorkoutBut.getText() + "?");
                 c = AddNewWorkout.class;
                 break;
             case 1:
-                suggestionBut.setText("Edit an Existing Workout?");
+                suggestionBut.setText(editWorkoutBut.getText() + "?");
                 c = EditWorkout.class;
                 break;
             case 2:
-                suggestionBut.setText("View a Past Workout?");
+                suggestionBut.setText(pastWorkoutsBut.getText() + "?");
                 c = ViewPastWorkouts.class;
                 break;
             default:

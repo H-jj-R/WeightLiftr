@@ -10,7 +10,7 @@
         android:id="@+id/newWorkoutBut"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:text="Create New Workout"
+        android:text="Create a New Workout"
         android:textAllCaps="false"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
