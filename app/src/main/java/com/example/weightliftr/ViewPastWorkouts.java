@@ -18,4 +18,7 @@ public class ViewPastWorkouts extends AppCompatActivity {
                 startActivity(new Intent(ViewPastWorkouts.this, MainActivity.class))
         );
     }
+
+    // TODO: Display workouts which have been saved, including details about them once selected
+
 }

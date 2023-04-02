@@ -18,5 +18,8 @@ public class EditWorkout extends AppCompatActivity {
         newWorkoutBut.setOnClickListener(event ->
                 startActivity(new Intent(EditWorkout.this, MainActivity.class))
         );
+
+        //TODO: Show current workouts, and allow user to add and remove exercises, and edit properties
+
     }
 }

@@ -13,10 +13,6 @@
         android:theme="@style/Theme.WeightLiftr"
         tools:targetApi="31">
         <activity
-            android:name=".SettingsActivity"
-            android:exported="false"
-            android:screenOrientation="sensorPortrait" />
-        <activity
             android:name=".StartWorkout"
             android:exported="false"
             android:screenOrientation="sensorPortrait" />

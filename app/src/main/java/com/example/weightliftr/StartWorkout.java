@@ -17,5 +17,8 @@ public class StartWorkout extends AppCompatActivity {
         newWorkoutBut.setOnClickListener(event ->
                 startActivity(new Intent(StartWorkout.this, MainActivity.class))
         );
+
+        //TODO: Display workouts, and when one is selected, display all relevant information
+
     }
 }

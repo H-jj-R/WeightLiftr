@@ -57,5 +57,8 @@ public class MainActivity extends AppCompatActivity {
         suggestionBut.setOnClickListener(event ->
                 startActivity(new Intent(MainActivity.this, c))
         );
+
+        //TODO: Maybe implement AdView, if not add 2nd suggestion Button
+
     }
 }

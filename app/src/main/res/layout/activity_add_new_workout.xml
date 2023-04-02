@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="0.035" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/newExBut"
         android:layout_width="354dp"
         android:layout_height="48dp"
         android:text="Add New Exercise"
@@ -46,7 +46,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.27" />
 
     <EditText
         android:id="@+id/workoutNameIn"
@@ -55,13 +55,25 @@
         android:background="@color/black"
         android:ems="10"
         android:hint="Workout Name"
-        android:textColorHint="#A1FFFFFF"
-        android:textColor="@color/white"
         android:padding="15dp"
+        android:textColor="@color/white"
+        android:textColorHint="#A1FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.204" />
+        app:layout_constraintVertical_bias="0.14" />
+
+    <Button
+        android:id="@+id/createBut"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:text="Create"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.127" />
 </androidx.constraintlayout.widget.ConstraintLayout>
