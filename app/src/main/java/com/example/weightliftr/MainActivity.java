@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button suggestionBut = (Button) findViewById(R.id.suggestionBut);
         int rnd = new Random().nextInt(3);
-        Class c;
+        Class<?> c;
         switch (rnd) {
             case 0:
                 suggestionBut.setText(newWorkoutBut.getText() + "?");
