@@ -13,6 +13,7 @@ public class EditWorkout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_workout);
+        DBHandler DBHandler = new DBHandler(this.getApplicationContext());
 
         Button newWorkoutBut = (Button) findViewById(R.id.backBut);
         newWorkoutBut.setOnClickListener(event ->

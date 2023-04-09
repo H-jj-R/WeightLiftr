@@ -1,4 +1,6 @@
-package com.example.weightliftr;
+package com.example.weightliftr.objects;
+
+import com.example.weightliftr.objects.Exercise;
 
 import java.util.List;
 

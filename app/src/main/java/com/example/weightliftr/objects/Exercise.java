@@ -1,4 +1,4 @@
-package com.example.weightliftr;
+package com.example.weightliftr.objects;
 
 public class Exercise {
     private String name;

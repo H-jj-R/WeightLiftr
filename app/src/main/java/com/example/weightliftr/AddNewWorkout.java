@@ -12,6 +12,7 @@ public class AddNewWorkout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_workout);
+        DBHandler DBHandler = new DBHandler(this.getApplicationContext());
 
         Button newWorkoutBut = (Button) findViewById(R.id.backBut);
         newWorkoutBut.setOnClickListener(event ->
@@ -26,7 +27,7 @@ public class AddNewWorkout extends AppCompatActivity {
 
         Button createBut = (Button) findViewById(R.id.createBut);
         createBut.setOnClickListener(event -> {
-            // TODO: Save inputted workout details to file
+            // TODO: Save inputted workout details to DB
         });
     }
 }

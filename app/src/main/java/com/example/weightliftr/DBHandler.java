@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.weightliftr.objects.Exercise;
+import com.example.weightliftr.objects.Workout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -56,6 +58,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
         return id;
     }
+
     public List<Workout> getAllWorkouts() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_WORKOUTS, null, null, null, null, null, null);

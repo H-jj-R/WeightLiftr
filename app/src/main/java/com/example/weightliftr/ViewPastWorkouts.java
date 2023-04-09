@@ -11,9 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weightliftr.objects.Workout;
+
 import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewPastWorkouts extends AppCompatActivity {
 
@@ -21,19 +24,18 @@ public class ViewPastWorkouts extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_past_workout);
+        DBHandler DBHandler = new DBHandler(this.getApplicationContext());
 
         Button newWorkoutBut = (Button) findViewById(R.id.backBut);
         newWorkoutBut.setOnClickListener(event ->
                 startActivity(new Intent(ViewPastWorkouts.this, MainActivity.class))
         );
 
-        ArrayList<String> items = new ArrayList<>();
-        // Add some dummy items to the list
-        items.add("Item 1");
-        items.add("Item 2");
-        items.add("Item 3");
-        items.add("Item 4");
-        items.add("Item 5");
+        List<String> items = new ArrayList<>();
+        List<Workout> workouts = DBHandler.getAllWorkouts();
+        for (Workout w : workouts) {
+            items.add(w.getName());
+        }
 
         // Get a reference to the LinearLayout
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
