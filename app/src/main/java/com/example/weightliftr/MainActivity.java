@@ -16,49 +16,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button newWorkoutBut = (Button) findViewById(R.id.newWorkoutBut);
-        newWorkoutBut.setOnClickListener(event ->
-                startActivity(new Intent(MainActivity.this, AddNewWorkout.class))
-        );
-
         Button editWorkoutBut = (Button) findViewById(R.id.editWorkoutBut);
-        editWorkoutBut.setOnClickListener(event ->
-                startActivity(new Intent(MainActivity.this, EditWorkout.class))
-        );
-
         Button pastWorkoutsBut = (Button) findViewById(R.id.pastWorkoutsBut);
-        pastWorkoutsBut.setOnClickListener(event ->
-                startActivity(new Intent(MainActivity.this, ViewPastWorkouts.class))
-        );
-
         Button startWorkoutBut = (Button) findViewById(R.id.startWorkoutBut);
-        startWorkoutBut.setOnClickListener(event ->
-                startActivity(new Intent(MainActivity.this, StartWorkout.class))
-        );
+
+        setButtonClickEvent(newWorkoutBut, AddNewWorkout.class);
+        setButtonClickEvent(editWorkoutBut, EditWorkout.class);
+        setButtonClickEvent(pastWorkoutsBut, ViewPastWorkouts.class);
+        setButtonClickEvent(startWorkoutBut, StartWorkout.class);
 
         Button suggestionBut = (Button) findViewById(R.id.suggestionBut);
-        int rnd = new Random().nextInt(3);
-        Class<?> c;
-        switch (rnd) {
-            case 0:
-                suggestionBut.setText(newWorkoutBut.getText() + "?");
-                c = AddNewWorkout.class;
-                break;
-            case 1:
-                suggestionBut.setText(editWorkoutBut.getText() + "?");
-                c = EditWorkout.class;
-                break;
-            case 2:
-                suggestionBut.setText(pastWorkoutsBut.getText() + "?");
-                c = ViewPastWorkouts.class;
-                break;
-            default:
-                c = null;
-        }
+        String[] activityNames = { (String) newWorkoutBut.getText(),
+                                         (String) editWorkoutBut.getText(),
+                                         (String) pastWorkoutsBut.getText() };
+        Class<?>[] activityClasses = { AddNewWorkout.class,
+                                             EditWorkout.class,
+                                             ViewPastWorkouts.class };
+        int randomIndex = new Random().nextInt(activityClasses.length);
+        suggestionBut.setText(activityNames[randomIndex] + "?");
+        Class<?> nextActivityClass = activityClasses[randomIndex];
         suggestionBut.setOnClickListener(event ->
-                startActivity(new Intent(MainActivity.this, c))
+                startActivity(new Intent(MainActivity.this, nextActivityClass))
         );
 
-        //TODO: Maybe implement AdView, if not add 2nd suggestion Button
+        //TODO: Maybe implement AdView if SO question is answered, if not add something else before submission
 
+    }
+    private void setButtonClickEvent(Button button, Class<?> nextActivityClass) {
+        button.setOnClickListener(event -> startActivity(new Intent(MainActivity.this, nextActivityClass)));
     }
 }
