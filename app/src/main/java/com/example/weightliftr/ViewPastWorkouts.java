@@ -11,9 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.weightliftr.objects.Exercise;
 import com.example.weightliftr.objects.Workout;
-
-import org.xmlpull.v1.XmlPullParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,20 +30,23 @@ public class ViewPastWorkouts extends AppCompatActivity {
                 startActivity(new Intent(ViewPastWorkouts.this, MainActivity.class))
         );
 
-        List<String> items = new ArrayList<>();
+        List<String> names = new ArrayList<>();
+        List<List<Exercise>> exerciseListList = new ArrayList<>();
         List<Workout> workouts = DBHandler.getAllWorkouts();
         for (Workout w : workouts) {
-            items.add(w.getName());
+            names.add(w.getName());
+            exerciseListList.add(w.getExercises());
         }
 
         // Get a reference to the LinearLayout
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
         // Inflate the views for each item and add them to the LinearLayout
-        for (int i = 0; i < items.size(); i++) {
-            View view = LayoutInflater.from(this).inflate(R.layout.list_item, null);
+        for (int i = 0; i < workouts.size(); i++) {
+            View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, null);
             TextView textView = view.findViewById(R.id.itemTitle);
-            textView.setText(items.get(i));
+            textView.setText(names.get(i));
+            //List<Exercise> exercises = exerciseListList.get(i);
             linearLayout.addView(view);
 
             // Set an OnClickListener for each item
@@ -57,9 +59,14 @@ public class ViewPastWorkouts extends AppCompatActivity {
 
                 // Toggle the visibility of the extra details for the clicked item
                 View extraDetails = v.findViewById(R.id.extraDetails);
+                //TextView extraDetailsTextView = findViewById(R.id.extraDetails);
                 if (extraDetails.getVisibility() == View.GONE) {
+//                    for (int j = 0; j < exercises.size(); j++) {
+//                        extraDetailsTextView.setText((String) extraDetailsTextView.getText() + exercises.get(j).getName() + "\n");
+//                    }
                     extraDetails.setVisibility(View.VISIBLE);
                 } else {
+                    //extraDetailsTextView.setText("");
                     extraDetails.setVisibility(View.GONE);
                 }
             });
