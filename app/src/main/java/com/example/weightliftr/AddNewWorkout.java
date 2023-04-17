@@ -54,7 +54,6 @@ public class AddNewWorkout extends AppCompatActivity {
             } else if (exercisesToAdd.isEmpty()){
                 Toast.makeText(AddNewWorkout.this, "No exercises have been added!", Toast.LENGTH_LONG).show();
             }
-
         });
     }
 }

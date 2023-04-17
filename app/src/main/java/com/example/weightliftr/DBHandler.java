@@ -25,7 +25,7 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_EXERCISES = "exercises";
 
-    private Gson gson;
+    private final Gson gson;
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

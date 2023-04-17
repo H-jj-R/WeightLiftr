@@ -52,13 +52,14 @@ public class ViewPastWorkouts extends AppCompatActivity {
 
             // Set an OnClickListener for each item
             view.setOnClickListener(v -> {
+                View extraDetails = v.findViewById(R.id.extraDetails);
+                TextView extraDetailsTextView = findViewById(R.id.extraDetails);
+                extraDetailsTextView.setText("");
                 TextView itemTitle1 = v.findViewById(R.id.itemTitle);
 
                 Toast.makeText(ViewPastWorkouts.this, itemTitle1.getText(), Toast.LENGTH_SHORT).show();
 
                 // Toggle the visibility of the extra details for the clicked item
-                View extraDetails = v.findViewById(R.id.extraDetails);
-                TextView extraDetailsTextView = findViewById(R.id.extraDetails);
                 if (extraDetails.getVisibility() == View.GONE) {
                     for (int j = 0; j < exercises.size(); j++) {
                         extraDetailsTextView.setText((String) extraDetailsTextView.getText() + exercises.get(j).getName() + "\n");
