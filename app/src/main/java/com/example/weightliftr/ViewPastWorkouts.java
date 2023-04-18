@@ -2,6 +2,7 @@ package com.example.weightliftr;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -38,11 +39,8 @@ public class ViewPastWorkouts extends AppCompatActivity {
             exerciseListList.add(w.getExercises());
         }
 
-        // Get a reference to the LinearLayout
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
-        // TODO: Figure out why this doesn't work
-        // Inflate the views for each item and add them to the LinearLayout
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, null);
             TextView itemTitle = view.findViewById(R.id.itemTitle);
@@ -50,10 +48,9 @@ public class ViewPastWorkouts extends AppCompatActivity {
             List<Exercise> exercises = exerciseListList.get(i);
             linearLayout.addView(view);
 
-            // Set an OnClickListener for each item
             view.setOnClickListener(v -> {
-                View extraDetails = v.findViewById(R.id.extraDetails);
-                TextView extraDetailsTextView = findViewById(R.id.extraDetails);
+                @SuppressLint("CutPasteId") View extraDetails = v.findViewById(R.id.extraDetails);
+                @SuppressLint("CutPasteId") TextView extraDetailsTextView = v.findViewById(R.id.extraDetails);
                 extraDetailsTextView.setText("");
                 TextView itemTitle1 = v.findViewById(R.id.itemTitle);
 

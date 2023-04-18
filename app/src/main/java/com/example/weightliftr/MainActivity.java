@@ -6,11 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.example.weightliftr.objects.Exercise;
-import com.example.weightliftr.objects.Workout;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,19 +26,30 @@ public class MainActivity extends AppCompatActivity {
         setButtonClickEvent(pastWorkoutsBut, ViewPastWorkouts.class);
         setButtonClickEvent(startWorkoutBut, StartWorkout.class);
 
-        Button suggestionBut = (Button) findViewById(R.id.suggestionBut);
+        Button suggestionBut1 = (Button) findViewById(R.id.suggestionBut1);
+        Button suggestionBut2 = (Button) findViewById(R.id.suggestionBut2);
         String[] activityNames = { (String) newWorkoutBut.getText(),
                                          (String) editWorkoutBut.getText(),
                                          (String) pastWorkoutsBut.getText() };
         Class<?>[] activityClasses = { AddNewWorkout.class,
                                              EditWorkout.class,
                                              ViewPastWorkouts.class };
-        int randomIndex = new Random().nextInt(activityClasses.length);
-        suggestionBut.setText(activityNames[randomIndex] + "?");
-        Class<?> nextActivityClass = activityClasses[randomIndex];
-        suggestionBut.setOnClickListener(event ->
-                startActivity(new Intent(MainActivity.this, nextActivityClass))
+        int randomIndex1 = new Random().nextInt(activityClasses.length);
+        suggestionBut1.setText(activityNames[randomIndex1] + "?");
+        Class<?> nextActivityClass1 = activityClasses[randomIndex1];
+        suggestionBut1.setOnClickListener(event ->
+                startActivity(new Intent(MainActivity.this, nextActivityClass1))
         );
+        int randomIndex2 = new Random().nextInt(activityClasses.length);
+        while (randomIndex2 == randomIndex1) {
+            randomIndex2 = new Random().nextInt(activityClasses.length);
+        }
+        suggestionBut2.setText(activityNames[randomIndex2] + "?");
+        Class<?> nextActivityClass2 = activityClasses[randomIndex2];
+        suggestionBut2.setOnClickListener(event ->
+                startActivity(new Intent(MainActivity.this, nextActivityClass2))
+        );
+
 
         //TODO: Maybe implement AdView if SO question is answered, if not add something else before submission
 

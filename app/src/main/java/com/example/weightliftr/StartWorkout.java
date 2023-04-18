@@ -30,7 +30,6 @@ public class StartWorkout extends AppCompatActivity {
                 startActivity(new Intent(StartWorkout.this, MainActivity.class))
         );
 
-        //TODO: Display workouts, and when one is selected, display all relevant information
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
         List<String> names = new ArrayList<>();
@@ -51,7 +50,7 @@ public class StartWorkout extends AppCompatActivity {
             textView.setText(name);
 
             button.setOnClickListener(v -> {
-                // Handle button click event here
+                linearLayout.removeAllViews();
             });
 
             linearLayout.addView(view);
