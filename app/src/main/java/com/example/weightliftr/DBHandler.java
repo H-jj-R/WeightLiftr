@@ -47,7 +47,7 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertWorkout(Workout workout) {
+    public void insertWorkout(Workout workout) {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME, workout.getName());
@@ -56,7 +56,7 @@ public class DBHandler extends SQLiteOpenHelper {
         long id = db.insert(TABLE_WORKOUTS, null, values);
         workout.setId(id);
         db.close();
-        return id;
+        //return id;
     }
 
     public List<Workout> getAllWorkouts() {

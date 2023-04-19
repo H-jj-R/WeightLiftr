@@ -51,7 +51,6 @@ public class ViewPastWorkouts extends AppCompatActivity {
             view.setOnClickListener(v -> {
                 @SuppressLint("CutPasteId") View extraDetails = v.findViewById(R.id.extraDetails);
                 @SuppressLint("CutPasteId") TextView extraDetailsTextView = v.findViewById(R.id.extraDetails);
-                extraDetailsTextView.setText("");
                 TextView itemTitle1 = v.findViewById(R.id.itemTitle);
 
                 Toast.makeText(ViewPastWorkouts.this, itemTitle1.getText(), Toast.LENGTH_SHORT).show();

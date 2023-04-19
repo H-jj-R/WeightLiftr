@@ -6,6 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.example.weightliftr.objects.Exercise;
+import com.example.weightliftr.objects.Workout;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,15 +55,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, nextActivityClass2))
         );
 
-
-        //TODO: Maybe implement AdView if SO question is answered, if not add something else before submission
-
 //        List<Exercise> exercises= new ArrayList<>();
-//        exercises.add(new Exercise("Bicep Curls", 3, 15));
-//        exercises.add(new Exercise("Tricep Pulls", 3, 15));
-//        exercises.add(new Exercise("Forearm Stretches", 3, 15));
+//        exercises.add(new Exercise("Quad Pull", 3, 10));
+//        exercises.add(new Exercise("Squat", 3, 10));
+//        exercises.add(new Exercise("Calf Raise", 3, 15));
 //
-//        Workout w = new Workout("Individual Muscle Workout", exercises);
+//        Workout w = new Workout("Leg Workout", exercises);
 //        DBHandler.insertWorkout(w);
 
     }
