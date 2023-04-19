@@ -56,7 +56,6 @@ public class DBHandler extends SQLiteOpenHelper {
         long id = db.insert(TABLE_WORKOUTS, null, values);
         workout.setId(id);
         db.close();
-        //return id;
     }
 
     public List<Workout> getAllWorkouts() {
