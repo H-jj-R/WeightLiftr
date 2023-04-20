@@ -1,10 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- TODO: Design in-progress workout view -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="33dp"
+        android:layout_marginEnd="186dp"
+        android:text="TITLE"
+        tools:layout_editor_absoluteX="187dp"
+        tools:layout_editor_absoluteY="61dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/exerciseTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="77dp"
+        android:layout_marginEnd="193dp"
+        android:text="EXERCISE NUMBER + NAME"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="117dp" />
+
+    <TextView
+        android:id="@+id/setTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="122dp"
+        android:layout_marginEnd="240dp"
+        android:text="SET NUM1 OF NUM2"
+        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteY="172dp" />
+
+    <TextView
+        android:id="@+id/repTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="166dp"
+        android:text="NUM OF REPS"
+        tools:layout_editor_absoluteX="174dp"
+        tools:layout_editor_absoluteY="265dp" />
+
+    <Button
+        android:id="@+id/startSetBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="211dp"
+        android:layout_marginEnd="166dp"
+        android:text="START" />
+
+    <Button
+        android:id="@+id/finishSetBut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="283dp"
+        android:layout_marginEnd="163dp"
+        android:text="FINISH" />
+
+    <TextView
+        android:id="@+id/setTimerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="383dp"
+        android:layout_marginEnd="145dp"
+        android:text="TIME TO NEXT SET" />
+</RelativeLayout>
