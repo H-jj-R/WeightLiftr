@@ -2,8 +2,10 @@ package com.example.weightliftr;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.widget.Button;
 
 import java.util.Random;
@@ -46,20 +48,14 @@ public class MainActivity extends AppCompatActivity {
 
         int randomIndex1 = new Random().nextInt(activityClasses.length);
         suggestionBut1.setText(activityNames[randomIndex1] + "?");
-        Class<?> nextActivityClass1 = activityClasses[randomIndex1];
-        suggestionBut1.setOnClickListener(event ->
-                startActivity(new Intent(MainActivity.this, nextActivityClass1))
-        );
+        setButtonClickEvent(suggestionBut1, activityClasses[randomIndex1]);
 
-        int randomIndex2 = new Random().nextInt(activityClasses.length);
-        while (randomIndex2 == randomIndex1) {
+        int randomIndex2;
+        do {
             randomIndex2 = new Random().nextInt(activityClasses.length);
-        }
+        } while (randomIndex2 == randomIndex1);
         suggestionBut2.setText(activityNames[randomIndex2] + "?");
-        Class<?> nextActivityClass2 = activityClasses[randomIndex2];
-        suggestionBut2.setOnClickListener(event ->
-                startActivity(new Intent(MainActivity.this, nextActivityClass2))
-        );
+        setButtonClickEvent(suggestionBut2, activityClasses[randomIndex2]);
 
 //        List<Exercise> exercises= new ArrayList<>();
 //        exercises.add(new Exercise("Quad Pull", 3, 10));
@@ -71,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void setButtonClickEvent(Button button, Class<?> nextActivityClass) {
-        button.setOnClickListener(event -> startActivity(new Intent(MainActivity.this, nextActivityClass)));
+        button.setOnClickListener(event -> {
+            startActivity(new Intent(MainActivity.this, nextActivityClass));
+        });
     }
 }

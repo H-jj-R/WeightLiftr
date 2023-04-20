@@ -2,8 +2,10 @@ package com.example.weightliftr;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -76,24 +78,29 @@ public class AddNewWorkout extends AppCompatActivity {
                         addExLayout.setVisibility(View.GONE);
                         newExBut.setText("Add New Exercise?");
                     } else {
-                        Toast.makeText(AddNewWorkout.this, "Input not valid!", Toast.LENGTH_LONG).show();
+                        sendWarning("Input not valid!");
                     }
                 } catch (NumberFormatException e) {
-                    Toast.makeText(AddNewWorkout.this, "Input not valid!", Toast.LENGTH_LONG).show();
+                    sendWarning("Input not valid!");
                 }
             }
         });
 
         createBut.setOnClickListener(event -> {
-            EditText workoutNameIn = (EditText) findViewById(R.id.workoutNameIn);
+            EditText workoutNameIn = findViewById(R.id.workoutNameIn);
             if (workoutNameIn.getText().toString().equals("")) {
-                Toast.makeText(AddNewWorkout.this, "Workout name field empty!", Toast.LENGTH_LONG).show();
+                sendWarning("Workout name field empty!");
             } else if (exercisesToAdd.isEmpty()) {
-                Toast.makeText(AddNewWorkout.this, "No exercises have been added!", Toast.LENGTH_LONG).show();
+                sendWarning("No exercises have been added!");
             } else {
                 Workout w = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
                 DBHandler.insertWorkout(w);
             }
         });
+    }
+    public void sendWarning(String message) {
+        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        v.vibrate(300);
+        Toast.makeText(AddNewWorkout.this, message, Toast.LENGTH_SHORT).show();
     }
 }
