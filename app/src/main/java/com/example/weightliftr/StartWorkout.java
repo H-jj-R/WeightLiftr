@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import com.example.weightliftr.objects.Exercise;
 import com.example.weightliftr.objects.Workout;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,30 +39,62 @@ public class StartWorkout extends AppCompatActivity {
 
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
-        List<String> names = new ArrayList<>();
         List<List<Exercise>> exerciseListList = new ArrayList<>();
         List<Workout> workouts = DBHandler.getAllWorkouts();
         for (Workout w : workouts) {
-            names.add(w.getName());
             exerciseListList.add(w.getExercises());
         }
 
-        for (String name : names) {
+        for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this)
                     .inflate(R.layout.start_workout_list_item, linearLayout, false);
 
-            TextView textView = view.findViewById(R.id.item_text);
-            ImageButton button = view.findViewById(R.id.item_button);
+            TextView workoutName = view.findViewById(R.id.workoutName);
+            ImageButton startBut = view.findViewById(R.id.startBut);
 
-            textView.setText(name);
+            workoutName.setText(workouts.get(i).getName());
+            startBut.setId(i);
 
-            button.setOnClickListener(v -> {
+            startBut.setOnClickListener(v -> {
                 linearLayout.removeAllViews();
-                // TODO: Add nodes to Layout and start chosen workout
                 View newView = getLayoutInflater().inflate(R.layout.workout_in_progress, linearLayout, false);
                 linearLayout.addView(newView);
-            });
+                Workout currentWorkout = workouts.get(v.getId());
 
+                TextView titleTextView = newView.findViewById(R.id.titleTextView);
+                TextView exerciseTextView = newView.findViewById(R.id.exerciseTextView);
+                TextView setsTextView = newView.findViewById(R.id.setsTextView);
+                TextView repsTextView = newView.findViewById(R.id.repsTextView);
+                Button startSetBut = newView.findViewById(R.id.startSetBut);
+                Button finishSetBut = newView.findViewById(R.id.finishSetBut);
+                TextView setTimerTextView = newView.findViewById(R.id.setTimerTextView);
+
+                titleTextView.setText(currentWorkout.getName());
+                exerciseTextView.setText(currentWorkout.getExercises().get(0).getName());
+                int sets = currentWorkout.getExercises().get(0).getSets();
+                setsTextView.setText(String.valueOf(sets));
+                int reps = currentWorkout.getExercises().get(0).getReps();
+                repsTextView.setText(String.valueOf(reps));
+                int restTime = currentWorkout.getExercises().get(0).getRestTime();
+                setTimerTextView.setText(String.valueOf(restTime));
+
+                startSetBut.setOnClickListener(e -> {
+
+                });
+
+                finishSetBut.setOnClickListener(e -> {
+                    new CountDownTimer(restTime * 1000L, 1000) {
+                        public void onTick(long millisUntilFinished) {
+                            int secsLeft = (int) (millisUntilFinished / 1000);
+                            setTimerTextView.setText(String.valueOf(secsLeft));
+                        }
+                        public void onFinish() {
+                            setTimerTextView.setText("START NEXT SET");
+                        }
+                    }.start();
+                });
+
+            });
             linearLayout.addView(view);
         }
     }

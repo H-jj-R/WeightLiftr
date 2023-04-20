@@ -8,6 +8,11 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.widget.Button;
 
+import com.example.weightliftr.objects.Exercise;
+import com.example.weightliftr.objects.Workout;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,12 +63,28 @@ public class MainActivity extends AppCompatActivity {
         setButtonClickEvent(suggestionBut2, activityClasses[randomIndex2]);
 
 //        List<Exercise> exercises= new ArrayList<>();
-//        exercises.add(new Exercise("Quad Pull", 3, 10));
-//        exercises.add(new Exercise("Squat", 3, 10));
-//        exercises.add(new Exercise("Calf Raise", 3, 15));
+//        exercises.add(new Exercise("Quad Pull", 3, 10, 60));
+//        exercises.add(new Exercise("Squat", 3, 10, 60));
+//        exercises.add(new Exercise("Calf Raise", 3, 15, 60));
 //
 //        Workout w = new Workout("Leg Workout", exercises);
 //        DBHandler.insertWorkout(w);
+//
+//        List<Exercise> exercises1 = new ArrayList<>();
+//        exercises1.add(new Exercise("Bicep Curls", 4, 10, 35));
+//        exercises1.add(new Exercise("Tricep Pulls", 4, 10, 35));
+//        exercises1.add(new Exercise("Forearm Stretches", 3, 15, 35));
+//
+//        Workout w1 = new Workout("Ind. Muscle Workout", exercises1);
+//        DBHandler.insertWorkout(w1);
+//
+//        List<Exercise> exercises2 = new ArrayList<>();
+//        exercises2.add(new Exercise("Bench Press", 3, 10, 110));
+//        exercises2.add(new Exercise("Seated Row", 3, 10, 110));
+//        exercises2.add(new Exercise("Lat Pull", 2, 15, 110));
+//
+//        Workout w2 = new Workout("Upper Workout", exercises2);
+//        DBHandler.insertWorkout(w2);
 
     }
     private void setButtonClickEvent(Button button, Class<?> nextActivityClass) {

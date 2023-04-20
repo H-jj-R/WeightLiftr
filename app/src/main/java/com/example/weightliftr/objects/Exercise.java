@@ -4,11 +4,13 @@ public class Exercise {
     private String name;
     private int sets;
     private int reps;
+    private int restTime;
 
-    public Exercise(String name, int sets, int reps) {
+    public Exercise(String name, int sets, int reps, int restTime) {
         this.name = name;
         this.sets = sets;
         this.reps = reps;
+        this.restTime = restTime;
     }
 
     public String getName() {
@@ -21,5 +23,9 @@ public class Exercise {
 
     public int getReps() {
         return reps;
+    }
+
+    public int getRestTime() {
+        return restTime;
     }
 }

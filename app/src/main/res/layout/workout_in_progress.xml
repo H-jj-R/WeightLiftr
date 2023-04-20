@@ -30,7 +30,7 @@
         tools:layout_editor_absoluteY="117dp" />
 
     <TextView
-        android:id="@+id/setTextView"
+        android:id="@+id/setsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -42,7 +42,7 @@
         tools:layout_editor_absoluteY="172dp" />
 
     <TextView
-        android:id="@+id/repTextView"
+        android:id="@+id/repsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"

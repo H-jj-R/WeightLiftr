@@ -29,6 +29,7 @@ public class AddNewWorkout extends AppCompatActivity {
     private EditText exNameEditText;
     private EditText exSetsEditText;
     private EditText exRepsEditText;
+    private EditText exRestTimeEditText;
     private ListView addedExList;
 
     private List<Exercise> exercisesToAdd = new ArrayList<>();
@@ -48,6 +49,7 @@ public class AddNewWorkout extends AppCompatActivity {
         exNameEditText = findViewById(R.id.exNameEditText);
         exSetsEditText = findViewById(R.id.exSetsEditText);
         exRepsEditText = findViewById(R.id.exRepsEditText);
+        exRestTimeEditText = findViewById(R.id.exRestTimeEditText);
         addedExList = findViewById(R.id.addedExList);
 
         backBut.setOnClickListener(event ->
@@ -65,16 +67,19 @@ public class AddNewWorkout extends AppCompatActivity {
                 try {
                     if (!exNameEditText.getText().toString().equals("")
                             && !exSetsEditText.getText().toString().equals("")
-                            && !exRepsEditText.getText().toString().equals("")) {
+                            && !exRepsEditText.getText().toString().equals("")
+                            && !exRestTimeEditText.getText().toString().equals("")) {
                         String name = exNameEditText.getText().toString();
                         int sets = Integer.parseInt(exSetsEditText.getText().toString());
                         int reps = Integer.parseInt(exRepsEditText.getText().toString());
-                        exercisesToAdd.add(new Exercise(name, sets, reps));
-                        exerciseNames.add(name + sets + reps);
+                        int restTime = Integer.parseInt(exRestTimeEditText.getText().toString());
+                        exercisesToAdd.add(new Exercise(name, sets, reps, restTime));
+                        exerciseNames.add(name);
                         exerciseAdapter.notifyDataSetChanged();
                         exNameEditText.getText().clear();
                         exSetsEditText.getText().clear();
                         exRepsEditText.getText().clear();
+                        exRestTimeEditText.getText().clear();
                         addExLayout.setVisibility(View.GONE);
                         newExBut.setText("Add New Exercise?");
                     } else {
@@ -98,6 +103,7 @@ public class AddNewWorkout extends AppCompatActivity {
             }
         });
     }
+
     public void sendWarning(String message) {
         Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         v.vibrate(300);
