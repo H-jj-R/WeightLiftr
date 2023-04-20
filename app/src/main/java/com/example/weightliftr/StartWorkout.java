@@ -56,6 +56,8 @@ public class StartWorkout extends AppCompatActivity {
             button.setOnClickListener(v -> {
                 linearLayout.removeAllViews();
                 // TODO: Add nodes to Layout and start chosen workout
+                View newView = getLayoutInflater().inflate(R.layout.workout_in_progress, linearLayout, false);
+                linearLayout.addView(newView);
             });
 
             linearLayout.addView(view);
