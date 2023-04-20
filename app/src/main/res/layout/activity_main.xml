@@ -35,10 +35,10 @@
         app:layout_constraintVertical_bias="0.622" />
 
     <Button
-        android:id="@+id/pastWorkoutsBut"
+        android:id="@+id/allWorkoutsBut"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:text="View Your Past Workouts"
+        android:text="View All Current Workouts"
         android:textAllCaps="false"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -58,7 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.266"
-        app:layout_constraintStart_toEndOf="@+id/pastWorkoutsBut"
+        app:layout_constraintStart_toEndOf="@+id/allWorkoutsBut"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.317" />
 

@@ -18,17 +18,20 @@ import com.example.weightliftr.objects.Workout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPastWorkouts extends AppCompatActivity {
+public class ViewAllWorkouts extends AppCompatActivity {
+
+    private Button backBut;
+    private DBHandler DBHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_past_workout);
-        DBHandler DBHandler = new DBHandler(this.getApplicationContext());
+        setContentView(R.layout.activity_view_all_workouts);
+        DBHandler = new DBHandler(this.getApplicationContext());
 
-        Button newWorkoutBut = (Button) findViewById(R.id.backBut);
-        newWorkoutBut.setOnClickListener(event ->
-                startActivity(new Intent(ViewPastWorkouts.this, MainActivity.class))
+        backBut = findViewById(R.id.backBut);
+        backBut.setOnClickListener(event ->
+                startActivity(new Intent(ViewAllWorkouts.this, MainActivity.class))
         );
 
         List<String> names = new ArrayList<>();
@@ -53,7 +56,7 @@ public class ViewPastWorkouts extends AppCompatActivity {
                 @SuppressLint("CutPasteId") TextView extraDetailsTextView = v.findViewById(R.id.extraDetails);
                 TextView itemTitle1 = v.findViewById(R.id.itemTitle);
 
-                Toast.makeText(ViewPastWorkouts.this, itemTitle1.getText(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewAllWorkouts.this, itemTitle1.getText(), Toast.LENGTH_SHORT).show();
 
                 // Toggle the visibility of the extra details for the clicked item
                 if (extraDetails.getVisibility() == View.GONE) {

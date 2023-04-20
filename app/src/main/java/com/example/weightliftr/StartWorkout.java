@@ -19,14 +19,18 @@ import java.util.List;
 
 public class StartWorkout extends AppCompatActivity {
 
+    private Button backBut;
+    private DBHandler DBHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_workout);
-        DBHandler DBHandler = new DBHandler(this.getApplicationContext());
 
-        Button newWorkoutBut = (Button) findViewById(R.id.backBut);
-        newWorkoutBut.setOnClickListener(event ->
+        DBHandler = new DBHandler(this.getApplicationContext());
+        backBut = findViewById(R.id.backBut);
+
+        backBut.setOnClickListener(event ->
                 startActivity(new Intent(StartWorkout.this, MainActivity.class))
         );
 
@@ -51,6 +55,7 @@ public class StartWorkout extends AppCompatActivity {
 
             button.setOnClickListener(v -> {
                 linearLayout.removeAllViews();
+                // TODO: Add nodes to Layout and start chosen workout
             });
 
             linearLayout.addView(view);

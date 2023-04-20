@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -21,9 +20,18 @@ import java.util.List;
 
 public class AddNewWorkout extends AppCompatActivity {
 
-    List<Exercise> exercisesToAdd = new ArrayList<>();
-    List<String> exerciseNames = new ArrayList<>();
-    ArrayAdapter<String> exerciseAdapter;
+    private Button backBut;
+    private Button createBut;
+    private Button newExBut;
+    private LinearLayout addExLayout;
+    private EditText exNameEditText;
+    private EditText exSetsEditText;
+    private EditText exRepsEditText;
+    private ListView addedExList;
+
+    private List<Exercise> exercisesToAdd = new ArrayList<>();
+    private List<String> exerciseNames = new ArrayList<>();
+    private ArrayAdapter<String> exerciseAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,26 +39,26 @@ public class AddNewWorkout extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_workout);
         DBHandler DBHandler = new DBHandler(this.getApplicationContext());
 
-        Button newWorkoutBut = findViewById(R.id.backBut);
-        Button createBut = findViewById(R.id.createBut);
-        Button mShowEditTextButton = findViewById(R.id.newExBut);
-        LinearLayout addExLayout = findViewById(R.id.addExLayout);
-        EditText exNameEditText = findViewById(R.id.exNameEditText);
-        EditText exSetsEditText = findViewById(R.id.exSetsEditText);
-        EditText exRepsEditText = findViewById(R.id.exRepsEditText);
-        ListView addedExList = findViewById(R.id.addedExList);
+        backBut = findViewById(R.id.backBut);
+        createBut = findViewById(R.id.createBut);
+        newExBut = findViewById(R.id.newExBut);
+        addExLayout = findViewById(R.id.addExLayout);
+        exNameEditText = findViewById(R.id.exNameEditText);
+        exSetsEditText = findViewById(R.id.exSetsEditText);
+        exRepsEditText = findViewById(R.id.exRepsEditText);
+        addedExList = findViewById(R.id.addedExList);
 
-        newWorkoutBut.setOnClickListener(event ->
+        backBut.setOnClickListener(event ->
                 startActivity(new Intent(AddNewWorkout.this, MainActivity.class))
         );
 
         exerciseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseNames);
         addedExList.setAdapter(exerciseAdapter);
 
-        mShowEditTextButton.setOnClickListener(event -> {
+        newExBut.setOnClickListener(event -> {
             if (addExLayout.getVisibility() == View.GONE) {
                 addExLayout.setVisibility(View.VISIBLE);
-                mShowEditTextButton.setText("Add This Exercise");
+                newExBut.setText("Add This Exercise");
             } else {
                 try {
                     if (!exNameEditText.getText().toString().equals("")
@@ -66,7 +74,7 @@ public class AddNewWorkout extends AppCompatActivity {
                         exSetsEditText.getText().clear();
                         exRepsEditText.getText().clear();
                         addExLayout.setVisibility(View.GONE);
-                        mShowEditTextButton.setText("Add New Exercise?");
+                        newExBut.setText("Add New Exercise?");
                     } else {
                         Toast.makeText(AddNewWorkout.this, "Input not valid!", Toast.LENGTH_LONG).show();
                     }
