@@ -69,6 +69,13 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void removeWorkout(Workout workout) {
+        SQLiteDatabase db = getWritableDatabase();
+        String[] args = {String.valueOf(workout.getId())};
+        db.delete(TABLE_WORKOUTS, COLUMN_ID + "=?", args);
+        db.close();
+    }
+
     public List<Workout> getAllWorkouts() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_WORKOUTS, null, null, null, null, null, null);
@@ -87,4 +94,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
         return workouts;
     }
+
+
 }

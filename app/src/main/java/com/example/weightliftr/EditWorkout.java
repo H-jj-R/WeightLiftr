@@ -9,11 +9,13 @@ import android.widget.Button;
 public class EditWorkout extends AppCompatActivity {
 
     private Button backBut;
+    private DBHandler DBHandler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_workout);
-        DBHandler DBHandler = new DBHandler(this.getApplicationContext());
+        DBHandler = new DBHandler(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(event ->

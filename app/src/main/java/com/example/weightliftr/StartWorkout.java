@@ -46,11 +46,7 @@ public class StartWorkout extends AppCompatActivity {
 
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
-        List<List<Exercise>> exerciseListList = new ArrayList<>();
         List<Workout> workouts = DBHandler.getAllWorkouts();
-        for (Workout w : workouts) {
-            exerciseListList.add(w.getExercises());
-        }
 
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this)

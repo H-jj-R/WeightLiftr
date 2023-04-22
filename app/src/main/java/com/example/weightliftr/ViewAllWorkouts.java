@@ -34,21 +34,15 @@ public class ViewAllWorkouts extends AppCompatActivity {
                 startActivity(new Intent(ViewAllWorkouts.this, MainActivity.class))
         );
 
-        List<String> names = new ArrayList<>();
-        List<List<Exercise>> exerciseListList = new ArrayList<>();
         List<Workout> workouts = DBHandler.getAllWorkouts();
-        for (Workout w : workouts) {
-            names.add(w.getName());
-            exerciseListList.add(w.getExercises());
-        }
 
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, null);
             TextView itemTitle = view.findViewById(R.id.itemTitle);
-            itemTitle.setText(names.get(i));
-            List<Exercise> exercises = exerciseListList.get(i);
+            itemTitle.setText(workouts.get(i).getName());
+            List<Exercise> exercises = workouts.get(i).getExercises();
             linearLayout.addView(view);
 
             view.setOnClickListener(v -> {
