@@ -11,14 +11,14 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.weightliftr.objects.Exercise;
 import com.example.weightliftr.objects.Workout;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class StartWorkout extends AppCompatActivity {
 
@@ -70,30 +70,48 @@ public class StartWorkout extends AppCompatActivity {
                 TextView setTimerTextView = newView.findViewById(R.id.setTimerTextView);
 
                 titleTextView.setText(currentWorkout.getName());
-                exerciseTextView.setText(currentWorkout.getExercises().get(0).getName());
-                int sets = currentWorkout.getExercises().get(0).getSets();
-                setsTextView.setText(String.valueOf(sets));
-                int reps = currentWorkout.getExercises().get(0).getReps();
+                AtomicInteger atomicExerciseNum = new AtomicInteger(0);
+                exerciseTextView.setText(currentWorkout.getExercises().get(atomicExerciseNum.get()).getName());
+                AtomicInteger atomicSetNum = new AtomicInteger(1);
+                int sets = currentWorkout.getExercises().get(atomicExerciseNum.get()).getSets();
+                setsTextView.setText("Sets: " + atomicSetNum + " / " + sets);
+                int reps = currentWorkout.getExercises().get(atomicExerciseNum.get()).getReps();
                 repsTextView.setText(String.valueOf(reps));
-                int restTime = currentWorkout.getExercises().get(0).getRestTime();
-                setTimerTextView.setText(String.valueOf(restTime));
+                int restTime = currentWorkout.getExercises().get(atomicExerciseNum.get()).getRestTime();
+                setTimerTextView.setText("START NEXT SET");
+
+                CountDownTimer countDownTimer = new CountDownTimer(restTime * 1000L, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        int secsLeft = (int) (millisUntilFinished / 1000);
+                        setTimerTextView.setText(String.valueOf(secsLeft));
+                    }
+                    @Override
+                    public void onFinish() {
+                        setTimerTextView.setText("START NEXT SET");
+                    }
+                };
 
                 startSetBut.setOnClickListener(e -> {
-
+                    countDownTimer.cancel();
+                    setTimerTextView.setText("SET IN PROGRESS");
                 });
 
                 finishSetBut.setOnClickListener(e -> {
-                    new CountDownTimer(restTime * 1000L, 1000) {
-                        public void onTick(long millisUntilFinished) {
-                            int secsLeft = (int) (millisUntilFinished / 1000);
-                            setTimerTextView.setText(String.valueOf(secsLeft));
-                        }
-                        public void onFinish() {
-                            setTimerTextView.setText("START NEXT SET");
-                        }
-                    }.start();
-                });
+                    if (setTimerTextView.getText() == "SET IN PROGRESS") {
 
+                        atomicExerciseNum.getAndIncrement();
+                        atomicSetNum.getAndIncrement();
+                        if (atomicSetNum.get() > sets) {
+                            // TODO: Next Exercise
+
+                        }
+
+                        countDownTimer.start();
+                    } else {
+                        Toast.makeText(StartWorkout.this, "Start a set first!", Toast.LENGTH_SHORT).show();
+                    }
+                });
             });
             linearLayout.addView(view);
         }

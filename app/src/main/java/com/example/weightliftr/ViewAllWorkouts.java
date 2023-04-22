@@ -61,7 +61,7 @@ public class ViewAllWorkouts extends AppCompatActivity {
                 // Toggle the visibility of the extra details for the clicked item
                 if (extraDetails.getVisibility() == View.GONE) {
                     for (int j = 0; j < exercises.size(); j++) {
-                        extraDetailsTextView.setText((String) extraDetailsTextView.getText() + exercises.get(j).getName() + "\n");
+                        extraDetailsTextView.setText(extraDetailsTextView.getText() + exercises.get(j).getName() + "\n");
                     }
                     extraDetails.setVisibility(View.VISIBLE);
                 } else {
