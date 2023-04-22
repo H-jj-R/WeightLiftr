@@ -58,6 +58,17 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void updateWorkout(Workout workout) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, workout.getName());
+        String exercisesJson = gson.toJson(workout.getExercises());
+        values.put(COLUMN_EXERCISES, exercisesJson);
+        String[] args = {String.valueOf(workout.getId())};
+        db.update(TABLE_WORKOUTS, values, COLUMN_ID + "=?", args);
+        db.close();
+    }
+
     public List<Workout> getAllWorkouts() {
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.query(TABLE_WORKOUTS, null, null, null, null, null, null);
