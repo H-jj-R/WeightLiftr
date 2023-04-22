@@ -24,13 +24,14 @@ public class StartWorkout extends AppCompatActivity {
     private Button backBut;
     private DBHandler DBHandler;
 
-    int currentExerciseNum;
-    int currentSetNum;
+    private Workout currentWorkout;
+    private int currentExerciseNum;
+    private int currentSetNum;
 
-    int totalExercises;
-    int totalSets;
-    int totalReps;
-    int restTime;
+    private int totalExercises;
+    private int totalSets;
+    private int totalReps;
+    private int restTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class StartWorkout extends AppCompatActivity {
                 linearLayout.removeAllViews();
                 View newView = getLayoutInflater().inflate(R.layout.workout_in_progress, linearLayout, false);
                 linearLayout.addView(newView);
-                Workout currentWorkout = workouts.get(v.getId());
+                currentWorkout = workouts.get(v.getId());
 
                 TextView titleTextView = newView.findViewById(R.id.titleTextView);
                 TextView exerciseTextView = newView.findViewById(R.id.exerciseTextView);

@@ -1,5 +1,6 @@
 package com.example.weightliftr;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -13,6 +14,7 @@ import com.example.weightliftr.objects.Workout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,9 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DBHandler = new DBHandler(this.getApplicationContext());
+
 
         newWorkoutBut = findViewById(R.id.newWorkoutBut);
         editWorkoutBut = findViewById(R.id.editWorkoutBut);

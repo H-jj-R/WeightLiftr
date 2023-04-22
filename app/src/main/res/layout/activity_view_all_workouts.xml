@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
         </LinearLayout>
-    </ScrollView>
 
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
