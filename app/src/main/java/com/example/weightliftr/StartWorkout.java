@@ -18,12 +18,19 @@ import com.example.weightliftr.objects.Workout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class StartWorkout extends AppCompatActivity {
 
     private Button backBut;
     private DBHandler DBHandler;
+
+    int currentExerciseNum;
+    int currentSetNum;
+
+    int totalExercises;
+    int totalSets;
+    int totalReps;
+    int restTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,14 +77,15 @@ public class StartWorkout extends AppCompatActivity {
                 TextView setTimerTextView = newView.findViewById(R.id.setTimerTextView);
 
                 titleTextView.setText(currentWorkout.getName());
-                AtomicInteger atomicExerciseNum = new AtomicInteger(0);
-                exerciseTextView.setText(currentWorkout.getExercises().get(atomicExerciseNum.get()).getName());
-                AtomicInteger atomicSetNum = new AtomicInteger(1);
-                int sets = currentWorkout.getExercises().get(atomicExerciseNum.get()).getSets();
-                setsTextView.setText("Sets: " + atomicSetNum + " / " + sets);
-                int reps = currentWorkout.getExercises().get(atomicExerciseNum.get()).getReps();
-                repsTextView.setText(String.valueOf(reps));
-                int restTime = currentWorkout.getExercises().get(atomicExerciseNum.get()).getRestTime();
+                currentExerciseNum = 0;
+                totalExercises = currentWorkout.getExercises().size();
+                exerciseTextView.setText(currentWorkout.getExercises().get(currentExerciseNum).getName());
+                currentSetNum = 1;
+                totalSets = currentWorkout.getExercises().get(currentExerciseNum).getSets();
+                setsTextView.setText("Current Set: " + currentSetNum + " / " + totalSets);
+                totalReps = currentWorkout.getExercises().get(currentExerciseNum).getReps();
+                repsTextView.setText(String.valueOf(totalReps));
+                restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();
                 setTimerTextView.setText("START NEXT SET");
 
                 CountDownTimer countDownTimer = new CountDownTimer(restTime * 1000L, 1000) {
@@ -93,20 +101,28 @@ public class StartWorkout extends AppCompatActivity {
                 };
 
                 startSetBut.setOnClickListener(e -> {
-                    countDownTimer.cancel();
-                    setTimerTextView.setText("SET IN PROGRESS");
+                    if (setTimerTextView.getText() != "SET IN PROGRESS") {
+                        countDownTimer.cancel();
+                        setTimerTextView.setText("SET IN PROGRESS");
+                    }
                 });
 
                 finishSetBut.setOnClickListener(e -> {
                     if (setTimerTextView.getText() == "SET IN PROGRESS") {
-
-                        atomicExerciseNum.getAndIncrement();
-                        atomicSetNum.getAndIncrement();
-                        if (atomicSetNum.get() > sets) {
-                            // TODO: Next Exercise
-
+                        currentSetNum++;
+                        if (currentSetNum > totalSets) {
+                            currentExerciseNum++;
+                            currentSetNum = 1;
+                            if (currentExerciseNum > totalExercises) {
+                                startActivity(new Intent(StartWorkout.this, MainActivity.class));
+                            }
                         }
-
+                        exerciseTextView.setText(currentWorkout.getExercises().get(currentExerciseNum).getName());
+                        totalSets = currentWorkout.getExercises().get(currentExerciseNum).getSets();
+                        setsTextView.setText("Sets: " + currentSetNum + " / " + totalSets);
+                        totalReps = currentWorkout.getExercises().get(currentExerciseNum).getReps();
+                        repsTextView.setText(String.valueOf(totalReps));
+                        restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();
                         countDownTimer.start();
                     } else {
                         Toast.makeText(StartWorkout.this, "Start a set first!", Toast.LENGTH_SHORT).show();
