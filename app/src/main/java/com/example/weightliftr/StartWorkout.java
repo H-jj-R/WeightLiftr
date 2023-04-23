@@ -1,5 +1,6 @@
 package com.example.weightliftr;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -81,7 +82,7 @@ public class StartWorkout extends AppCompatActivity {
         }
     }
 
-    private void startButFunc(View v) {
+    private void startButFunc(@NonNull View v) {
         linearLayout.removeAllViews();
         View newView = getLayoutInflater().inflate(R.layout.workout_in_progress, linearLayout, false);
         linearLayout.addView(newView);

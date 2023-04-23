@@ -1,12 +1,11 @@
 package com.example.weightliftr;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Vibrator;
 import android.widget.Button;
 
 import com.example.weightliftr.objects.Exercise;
@@ -19,7 +18,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DBHandler DBHandler;
+    //private DBHandler DBHandler;
+    private DBHandlerKotlin DBHandlerKotlin;
 
     private Button newWorkoutBut;
     private Button editWorkoutBut;
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        DBHandler = new DBHandler(this.getApplicationContext());
+        DBHandlerKotlin = new DBHandlerKotlin(this.getApplicationContext());
 
         newWorkoutBut = findViewById(R.id.newWorkoutBut);
         editWorkoutBut = findViewById(R.id.editWorkoutBut);
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
 //        exercises.add(new Exercise("Calf Raise", 3, 15, 60));
 //
 //        Workout w = new Workout("Leg Workout", exercises);
-//        DBHandler.insertWorkout(w);
+//        DBHandlerKotlin.insertWorkout(w);
 //
 //        List<Exercise> exercises1 = new ArrayList<>();
 //        exercises1.add(new Exercise("Bicep Curls", 4, 10, 35));
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 //        exercises1.add(new Exercise("Forearm Stretches", 3, 15, 35));
 //
 //        Workout w1 = new Workout("Ind. Muscle Workout", exercises1);
-//        DBHandler.insertWorkout(w1);
+//        DBHandlerKotlin.insertWorkout(w1);
 //
 //        List<Exercise> exercises2 = new ArrayList<>();
 //        exercises2.add(new Exercise("Bench Press", 3, 10, 110));
@@ -88,10 +88,11 @@ public class MainActivity extends AppCompatActivity {
 //        exercises2.add(new Exercise("Lat Pull", 2, 15, 110));
 //
 //        Workout w2 = new Workout("Upper Workout", exercises2);
-//        DBHandler.insertWorkout(w2);
+//        DBHandlerKotlin.insertWorkout(w2);
 
     }
-    private void setButtonClickEvent(Button button, Class<?> nextActivityClass) {
+
+    private void setButtonClickEvent(@NonNull Button button, Class<?> nextActivityClass) {
         button.setOnClickListener(v ->
                 startActivity(new Intent(MainActivity.this, nextActivityClass))
         );

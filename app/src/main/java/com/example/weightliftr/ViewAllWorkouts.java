@@ -1,5 +1,6 @@
 package com.example.weightliftr;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -62,7 +63,7 @@ public class ViewAllWorkouts extends AppCompatActivity {
         }
     }
 
-    private void clickViewFunc(View v, List<Exercise> exercises) {
+    private void clickViewFunc(@NonNull View v, List<Exercise> exercises) {
         @SuppressLint("CutPasteId") View extraDetails = v.findViewById(R.id.extraDetails);
         @SuppressLint("CutPasteId") TextView extraDetailsTextView = v.findViewById(R.id.extraDetails);
 
