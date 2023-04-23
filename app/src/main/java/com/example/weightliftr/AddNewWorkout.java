@@ -1,5 +1,6 @@
 package com.example.weightliftr;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -19,8 +20,11 @@ import com.example.weightliftr.objects.Workout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AddNewWorkout extends AppCompatActivity {
+
+    private DBHandler DBHandler;
 
     private Button backBut;
     private Button createBut;
@@ -40,7 +44,9 @@ public class AddNewWorkout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_workout);
-        DBHandler DBHandler = new DBHandler(this.getApplicationContext());
+        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
+        DBHandler = new DBHandler(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
         createBut = findViewById(R.id.createBut);
@@ -52,56 +58,60 @@ public class AddNewWorkout extends AppCompatActivity {
         exRestTimeEditText = findViewById(R.id.exRestTimeEditText);
         addedExList = findViewById(R.id.addedExList);
 
-        backBut.setOnClickListener(event ->
+        backBut.setOnClickListener(v ->
                 startActivity(new Intent(AddNewWorkout.this, MainActivity.class))
         );
 
         exerciseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseNames);
         addedExList.setAdapter(exerciseAdapter);
 
-        newExBut.setOnClickListener(event -> {
-            if (addExLayout.getVisibility() == View.GONE) {
-                addExLayout.setVisibility(View.VISIBLE);
-                newExBut.setText("Add This Exercise");
-            } else {
-                try {
-                    if (!exNameEditText.getText().toString().equals("")
-                            && !exSetsEditText.getText().toString().equals("")
-                            && !exRepsEditText.getText().toString().equals("")
-                            && !exRestTimeEditText.getText().toString().equals("")) {
-                        String name = exNameEditText.getText().toString();
-                        int sets = Integer.parseInt(exSetsEditText.getText().toString());
-                        int reps = Integer.parseInt(exRepsEditText.getText().toString());
-                        int restTime = Integer.parseInt(exRestTimeEditText.getText().toString());
-                        exercisesToAdd.add(new Exercise(name, sets, reps, restTime));
-                        exerciseNames.add(name);
-                        exerciseAdapter.notifyDataSetChanged();
-                        exNameEditText.getText().clear();
-                        exSetsEditText.getText().clear();
-                        exRepsEditText.getText().clear();
-                        exRestTimeEditText.getText().clear();
-                        addExLayout.setVisibility(View.GONE);
-                        newExBut.setText("Add New Exercise?");
-                    } else {
-                        sendWarning("Input not valid!");
-                    }
-                } catch (NumberFormatException e) {
+        newExBut.setOnClickListener(v -> newExFunc());
+
+        createBut.setOnClickListener(v -> createFunc());
+    }
+
+    public void newExFunc() {
+        if (addExLayout.getVisibility() == View.GONE) {
+            addExLayout.setVisibility(View.VISIBLE);
+            newExBut.setText("Add This Exercise");
+        } else {
+            try {
+                if (!exNameEditText.getText().toString().equals("")
+                        && !exSetsEditText.getText().toString().equals("")
+                        && !exRepsEditText.getText().toString().equals("")
+                        && !exRestTimeEditText.getText().toString().equals("")) {
+                    String name = exNameEditText.getText().toString();
+                    int sets = Integer.parseInt(exSetsEditText.getText().toString());
+                    int reps = Integer.parseInt(exRepsEditText.getText().toString());
+                    int restTime = Integer.parseInt(exRestTimeEditText.getText().toString());
+                    exercisesToAdd.add(new Exercise(name, sets, reps, restTime));
+                    exerciseNames.add(name);
+                    exerciseAdapter.notifyDataSetChanged();
+                    exNameEditText.getText().clear();
+                    exSetsEditText.getText().clear();
+                    exRepsEditText.getText().clear();
+                    exRestTimeEditText.getText().clear();
+                    addExLayout.setVisibility(View.GONE);
+                    newExBut.setText("Add New Exercise?");
+                } else {
                     sendWarning("Input not valid!");
                 }
+            } catch (NumberFormatException e) {
+                sendWarning("Input not valid!");
             }
-        });
+        }
+    }
 
-        createBut.setOnClickListener(event -> {
-            EditText workoutNameIn = findViewById(R.id.workoutNameIn);
-            if (workoutNameIn.getText().toString().equals("")) {
-                sendWarning("Workout name field empty!");
-            } else if (exercisesToAdd.isEmpty()) {
-                sendWarning("No exercises have been added!");
-            } else {
-                Workout w = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
-                DBHandler.insertWorkout(w);
-            }
-        });
+    public void createFunc() {
+        EditText workoutNameIn = findViewById(R.id.workoutNameIn);
+        if (workoutNameIn.getText().toString().equals("")) {
+            sendWarning("Workout name field empty!");
+        } else if (exercisesToAdd.isEmpty()) {
+            sendWarning("No exercises have been added!");
+        } else {
+            Workout w = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
+            DBHandler.insertWorkout(w);
+        }
     }
 
     public void sendWarning(String message) {

@@ -50,6 +50,7 @@
         android:text="WORKOUT NAME" />
 
     <ScrollView
+        android:id="@+id/verticalScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/workoutNameEditText"

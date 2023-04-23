@@ -19,23 +19,22 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private DBHandler DBHandler;
+
     private Button newWorkoutBut;
     private Button editWorkoutBut;
     private Button pastWorkoutsBut;
     private Button startWorkoutBut;
     private Button suggestionBut1;
     private Button suggestionBut2;
-    private DBHandler DBHandler;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.abs_layout);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
         DBHandler = new DBHandler(this.getApplicationContext());
-
 
         newWorkoutBut = findViewById(R.id.newWorkoutBut);
         editWorkoutBut = findViewById(R.id.editWorkoutBut);
@@ -93,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void setButtonClickEvent(Button button, Class<?> nextActivityClass) {
-        button.setOnClickListener(event -> {
-            startActivity(new Intent(MainActivity.this, nextActivityClass));
-        });
+        button.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, nextActivityClass))
+        );
     }
 }

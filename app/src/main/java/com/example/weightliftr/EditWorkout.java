@@ -1,5 +1,6 @@
 package com.example.weightliftr;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,14 +8,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.weightliftr.objects.Workout;
 
 import java.util.List;
+import java.util.Objects;
 
 public class EditWorkout extends AppCompatActivity {
 
@@ -27,10 +29,12 @@ public class EditWorkout extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_workout);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.abs_layout);
         DBHandler = new DBHandler(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
-        backBut.setOnClickListener(event ->
+        backBut.setOnClickListener(v ->
                 startActivity(new Intent(EditWorkout.this, MainActivity.class))
         );
 
@@ -55,18 +59,17 @@ public class EditWorkout extends AppCompatActivity {
                 linearLayout.removeAllViews();
                 View newView = getLayoutInflater().inflate(R.layout.edit_workout_details, linearLayout, false);
                 linearLayout.addView(newView);
+
                 currentWorkout = workouts.get(v.getId());
+                TextView tv = newView.findViewById(R.id.titleTextView);
+                tv.setText(currentWorkout.getName());
 
                 LinearLayout verticalLayout = newView.findViewById(R.id.verticalLayout);
+                View newNewView = getLayoutInflater().inflate(R.layout.edit_workout_exercises, verticalLayout, false);
+                verticalLayout.addView(newNewView);
 
-                //for (int j = 0; j < workouts.size(); j++) {
+                //TODO: Figure out how to add edit_workout_exercises to ScrollView in edit_workout_details
 
-                    TextView tv = new TextView(this);
-                    tv.setText("testView");
-                    tv.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                    verticalLayout.addView(tv);
-
-                //}
             });
             linearLayout.addView(view);
         }
