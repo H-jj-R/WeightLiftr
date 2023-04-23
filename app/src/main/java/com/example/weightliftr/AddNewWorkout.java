@@ -24,7 +24,7 @@ import java.util.Objects;
 
 public class AddNewWorkout extends AppCompatActivity {
 
-    private DBHandler DBHandler;
+    private WorkoutDBHandler WorkoutDBHandler;
 
     private Button backBut;
     private Button createBut;
@@ -46,7 +46,7 @@ public class AddNewWorkout extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        DBHandler = new DBHandler(this.getApplicationContext());
+        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
         createBut = findViewById(R.id.createBut);
@@ -110,7 +110,7 @@ public class AddNewWorkout extends AppCompatActivity {
             sendWarning("No exercises have been added!");
         } else {
             Workout w = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
-            DBHandler.insertWorkout(w);
+            WorkoutDBHandler.insertWorkout(w);
         }
     }
 

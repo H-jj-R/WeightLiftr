@@ -4,28 +4,24 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.weightliftr.objects.Exercise;
 import com.example.weightliftr.objects.Workout;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class ViewAllWorkouts extends AppCompatActivity {
 
-    private DBHandler DBHandler;
+    private WorkoutDBHandler WorkoutDBHandler;
 
     private Button backBut;
     private TextView itemTitle;
@@ -39,14 +35,14 @@ public class ViewAllWorkouts extends AppCompatActivity {
         setContentView(R.layout.activity_view_all_workouts);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        DBHandler = new DBHandler(this.getApplicationContext());
+        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v ->
                 startActivity(new Intent(ViewAllWorkouts.this, MainActivity.class))
         );
 
-        workouts = DBHandler.getAllWorkouts();
+        workouts = WorkoutDBHandler.getAllWorkouts();
 
         linearLayout = findViewById(R.id.linearLayout);
 

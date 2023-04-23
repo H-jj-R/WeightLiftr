@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.weightliftr.objects.Workout;
@@ -21,7 +20,7 @@ import java.util.Objects;
 public class EditWorkout extends AppCompatActivity {
 
     private Button backBut;
-    private DBHandler DBHandler;
+    private WorkoutDBHandler WorkoutDBHandler;
 
     private Workout currentWorkout;
 
@@ -31,7 +30,7 @@ public class EditWorkout extends AppCompatActivity {
         setContentView(R.layout.activity_edit_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        DBHandler = new DBHandler(this.getApplicationContext());
+        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v ->
@@ -43,7 +42,7 @@ public class EditWorkout extends AppCompatActivity {
 
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
-        List<Workout> workouts = DBHandler.getAllWorkouts();
+        List<Workout> workouts = WorkoutDBHandler.getAllWorkouts();
 
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this)

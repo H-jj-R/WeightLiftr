@@ -16,7 +16,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DBHandler extends SQLiteOpenHelper {
+public class WorkoutDBHandler extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "workouts.db";
     private static final int DATABASE_VERSION = 1;
 
@@ -27,7 +27,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     private final Gson gson;
 
-    public DBHandler(Context context) {
+    public WorkoutDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         gson = new Gson();
     }

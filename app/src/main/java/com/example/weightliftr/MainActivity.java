@@ -8,18 +8,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.example.weightliftr.objects.Exercise;
-import com.example.weightliftr.objects.Workout;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     //private DBHandler DBHandler;
-    private DBHandlerKotlin DBHandlerKotlin;
+    private WorkoutDBHandlerKotlin WorkoutDBHandlerKotlin;
 
     private Button newWorkoutBut;
     private Button editWorkoutBut;
@@ -34,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        DBHandlerKotlin = new DBHandlerKotlin(this.getApplicationContext());
+        WorkoutDBHandlerKotlin = new WorkoutDBHandlerKotlin(this.getApplicationContext());
 
         newWorkoutBut = findViewById(R.id.newWorkoutBut);
         editWorkoutBut = findViewById(R.id.editWorkoutBut);
