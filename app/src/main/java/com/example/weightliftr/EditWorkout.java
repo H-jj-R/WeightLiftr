@@ -64,10 +64,15 @@ public class EditWorkout extends AppCompatActivity {
                 tv.setText(currentWorkout.getName());
 
                 LinearLayout verticalLayout = newView.findViewById(R.id.verticalLayout);
-                View newNewView = getLayoutInflater().inflate(R.layout.edit_workout_exercises, verticalLayout, false);
-                verticalLayout.addView(newNewView);
+                for (int j = 0; j < currentWorkout.getExercises().size(); j++) {
 
-                //TODO: Figure out how to add edit_workout_exercises to ScrollView in edit_workout_details
+                    // TODO: Figure out how to add edit_workout_exercises to ScrollView in edit_workout_details
+                    // TODO: Figure out why below doesn't work
+
+                    View newNewView = getLayoutInflater().inflate(R.layout.edit_workout_exercises, verticalLayout, false);
+                    verticalLayout.addView(newNewView);
+
+                }
 
             });
             linearLayout.addView(view);
