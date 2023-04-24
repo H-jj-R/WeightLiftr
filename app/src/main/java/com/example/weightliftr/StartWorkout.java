@@ -139,7 +139,7 @@ public class StartWorkout extends AppCompatActivity {
                 currentSetNum = 1;
                 if (currentExerciseNum > totalExercises) {
                     startActivity(new Intent(StartWorkout.this, MainActivity.class));
-                    // TODO: Something different when workout finished
+                    // TODO: Do something different when workout finished
                 }
             }
             exerciseTextView.setText(currentWorkout.getExercises().get(currentExerciseNum).getName());

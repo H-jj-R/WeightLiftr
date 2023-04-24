@@ -19,6 +19,7 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     private WorkoutDBHandler workoutDBHandler;
+    // TODO: Figure out why Kotlin DBHandler doesn't work
     //private WorkoutDBHandlerKotlin workoutDBHandlerKotlin;
 
     private Button newWorkoutBut;

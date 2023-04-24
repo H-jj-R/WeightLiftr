@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+<!-- TODO: Convert this class to ConstraintLayout -->
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
@@ -14,6 +15,7 @@
         android:layout_marginTop="33dp"
         android:layout_marginEnd="186dp"
         android:text="TITLE"
+        android:textColor="@color/white"
         tools:layout_editor_absoluteX="187dp"
         tools:layout_editor_absoluteY="61dp" />
 
@@ -26,6 +28,7 @@
         android:layout_marginTop="77dp"
         android:layout_marginEnd="193dp"
         android:text="EXERCISE NUMBER + NAME"
+        android:textColor="@color/white"
         tools:layout_editor_absoluteX="46dp"
         tools:layout_editor_absoluteY="117dp" />
 
@@ -38,6 +41,7 @@
         android:layout_marginTop="122dp"
         android:layout_marginEnd="240dp"
         android:text="SET NUM1 OF NUM2"
+        android:textColor="@color/white"
         tools:layout_editor_absoluteX="48dp"
         tools:layout_editor_absoluteY="172dp" />
 
@@ -50,6 +54,7 @@
         android:layout_marginTop="164dp"
         android:layout_marginEnd="166dp"
         android:text="NUM OF REPS"
+        android:textColor="@color/white"
         tools:layout_editor_absoluteX="174dp"
         tools:layout_editor_absoluteY="265dp" />
 
@@ -81,5 +86,6 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="383dp"
         android:layout_marginEnd="145dp"
-        android:text="TIME TO NEXT SET" />
+        android:text="TIME TO NEXT SET"
+        android:textColor="@color/white" />
 </RelativeLayout>

@@ -14,6 +14,7 @@
         android:drawableTint="@color/white"
         android:text="Go Back"
         android:textAllCaps="false"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
@@ -91,25 +92,33 @@
             android:id="@+id/exNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHint="#A1FFFFFF"
             android:hint="Exercise Name" />
 
         <EditText
             android:id="@+id/exSetsEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHint="#A1FFFFFF"
             android:hint="Sets" />
 
         <EditText
             android:id="@+id/exRepsEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHint="#A1FFFFFF"
             android:hint="Reps" />
 
         <EditText
             android:id="@+id/exRestTimeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Rest Time" />
+            android:textColor="@color/white"
+            android:textColorHint="#A1FFFFFF"
+            android:hint="Rest Time (Seconds)" />
     </LinearLayout>
 
     <ListView

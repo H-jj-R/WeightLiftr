@@ -5,20 +5,21 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/itemTitle"
+        android:id="@+id/workoutNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#B7FFFFFF"
         android:textSize="20sp"
         android:padding="16dp"
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/extraDetails"
+        android:id="@+id/exercisesTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="#81FFFFFF"
         android:textSize="16sp"
         android:padding="16dp"
-        android:text=""
         android:visibility="gone"/>
 
 </LinearLayout>

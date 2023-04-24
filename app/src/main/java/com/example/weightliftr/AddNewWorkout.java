@@ -115,8 +115,8 @@ public class AddNewWorkout extends AppCompatActivity {
     }
 
     public void sendWarning(String message) {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        v.vibrate(300);
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(300);
         Toast.makeText(AddNewWorkout.this, message, Toast.LENGTH_SHORT).show();
     }
 }

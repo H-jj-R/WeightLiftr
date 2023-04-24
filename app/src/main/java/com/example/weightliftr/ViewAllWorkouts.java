@@ -49,7 +49,7 @@ public class ViewAllWorkouts extends AppCompatActivity {
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, null);
             List<Exercise> exercises = workouts.get(i).getExercises();
-            itemTitle = view.findViewById(R.id.itemTitle);
+            itemTitle = view.findViewById(R.id.workoutNameTextView);
             itemTitle.setText(workouts.get(i).getName());
             linearLayout.addView(view);
 
@@ -60,8 +60,8 @@ public class ViewAllWorkouts extends AppCompatActivity {
     }
 
     private void clickViewFunc(@NonNull View v, List<Exercise> exercises) {
-        @SuppressLint("CutPasteId") View extraDetails = v.findViewById(R.id.extraDetails);
-        @SuppressLint("CutPasteId") TextView extraDetailsTextView = v.findViewById(R.id.extraDetails);
+        @SuppressLint("CutPasteId") View extraDetails = v.findViewById(R.id.exercisesTextView);
+        @SuppressLint("CutPasteId") TextView extraDetailsTextView = v.findViewById(R.id.exercisesTextView);
 
         // Toggle the visibility of the extra details for the clicked item
         if (extraDetails.getVisibility() == View.GONE) {

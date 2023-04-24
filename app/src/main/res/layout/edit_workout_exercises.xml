@@ -5,19 +5,25 @@
     android:orientation="horizontal">
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/nameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/setsEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/repsEditText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <EditText
+        android:id="@+id/restTimeEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
