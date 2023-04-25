@@ -46,12 +46,13 @@ public class EditWorkout extends AppCompatActivity {
 
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this)
-                    .inflate(R.layout.edit_workout_list_item, linearLayout, false);
+                    .inflate(R.layout.start_workout_list_item, linearLayout, false);
 
             TextView workoutName = view.findViewById(R.id.workoutName);
             ImageButton startBut = view.findViewById(R.id.startBut);
 
             workoutName.setText(workouts.get(i).getName());
+            startBut.setImageResource(R.drawable.ic_baseline_edit);
             startBut.setId(i);
 
             startBut.setOnClickListener(v -> {

@@ -16,6 +16,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
+// TODO: Improve comments in all code
+// TODO: Improve variable names and code structure
+// TODO: Style every activity better
+// TODO: (If time) Improve XML for handling of other devices
 public class MainActivity extends AppCompatActivity {
 
     private WorkoutDBHandler workoutDBHandler;

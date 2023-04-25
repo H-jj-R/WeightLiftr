@@ -74,6 +74,7 @@ public class StartWorkout extends AppCompatActivity {
 
             workoutName.setText(workouts.get(i).getName());
             startBut.setId(i);
+            startBut.setImageResource(R.drawable.ic_play_circle_outline);
             startBut.setOnClickListener(this::startButFunc);
 
             linearLayout.addView(view);
