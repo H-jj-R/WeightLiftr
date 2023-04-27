@@ -26,7 +26,7 @@ import java.util.Objects;
 
 public class AddNewWorkout extends AppCompatActivity {
 
-    private WorkoutDBHandler WorkoutDBHandler;
+    private WorkoutDBHandlerKotlin WorkoutDBHandler;
 
     private Button backBut;
     private Button createBut;
@@ -48,7 +48,7 @@ public class AddNewWorkout extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
+        WorkoutDBHandler = new WorkoutDBHandlerKotlin(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
         createBut = findViewById(R.id.createBut);

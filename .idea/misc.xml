@@ -19,7 +19,7 @@
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/activity_view_all_workouts.xml" value="0.22192028985507245" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/activity_view_past_workout.xml" value="0.264" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/edit_workout_details.xml" value="0.22192028985507245" />
-        <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/edit_workout_exercises.xml" value="0.2" />
+        <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/edit_workout_exercises.xml" value="0.176" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/edit_workout_list_item.xml" value="0.16734972677595628" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/editable_list_item.xml" value="0.16734972677595628" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/input_ex_list_item.xml" value="0.22192028985507245" />
@@ -27,7 +27,7 @@
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/read_only_list_item.xml" value="0.22192028985507245" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/settings_activity.xml" value="0.25" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/start_workout_list_item.xml" value="0.1" />
-        <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/workout_in_progress.xml" value="0.1" />
+        <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/layout/workout_in_progress.xml" value="0.264" />
         <entry key="..\:/Users/henri/AndroidStudioProjects/WeightLiftr/app/src/main/res/xml/root_preferences.xml" value="0.23822463768115942" />
       </map>
     </option>

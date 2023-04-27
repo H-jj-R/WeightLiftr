@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <!-- TODO: Convert this class to ConstraintLayout -->
 
     <TextView
         android:id="@+id/titleTextView"
@@ -51,16 +52,19 @@
 
     <ScrollView
         android:id="@+id/verticalScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/workoutNameEditText"
-        android:layout_above="@id/discardBut">
+        android:layout_width="405dp"
+        android:layout_height="520dp"
+        android:fillViewport="true"
+        android:layout_below="@id/workoutNameEditText">
+
 
         <LinearLayout
             android:id="@+id/verticalLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical">
+
+        </LinearLayout>
 
     </ScrollView>
 

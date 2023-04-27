@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class ViewAllWorkouts extends AppCompatActivity {
 
-    private WorkoutDBHandler WorkoutDBHandler;
+    private WorkoutDBHandlerKotlin WorkoutDBHandler;
 
     private Button backBut;
     private TextView itemTitle;
@@ -35,7 +35,7 @@ public class ViewAllWorkouts extends AppCompatActivity {
         setContentView(R.layout.activity_view_all_workouts);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
+        WorkoutDBHandler = new WorkoutDBHandlerKotlin(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v ->

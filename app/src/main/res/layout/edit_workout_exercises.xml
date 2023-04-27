@@ -6,24 +6,28 @@
 
     <EditText
         android:id="@+id/nameEditText"
-        android:layout_width="0dp"
+        android:hint="Exercise name"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
     <EditText
         android:id="@+id/setsEditText"
+        android:hint="Sets"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
     <EditText
         android:id="@+id/repsEditText"
+        android:hint="Reps"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>
 
     <EditText
         android:id="@+id/restTimeEditText"
+        android:hint="Rest Time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"/>

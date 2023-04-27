@@ -17,9 +17,9 @@ import java.util.Random;
 // TODO: (If time) Improve XML for handling of other devices
 public class MainActivity extends AppCompatActivity {
 
-    private WorkoutDBHandler workoutDBHandler;
-    // TODO: Figure out why Kotlin DBHandler doesn't work
-    //private WorkoutDBHandlerKotlin workoutDBHandlerKotlin;
+    // private WorkoutDBHandler workoutDBHandler;
+    private WorkoutDBHandlerKotlin workoutDBHandlerKotlin;
+
 
     private Button newWorkoutBut;
     private Button editWorkoutBut;
@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
-        //workoutDBHandlerKotlin = new WorkoutDBHandlerKotlin(this.getApplicationContext());
+        //workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
+        workoutDBHandlerKotlin = new WorkoutDBHandlerKotlin(this.getApplicationContext());
 
         newWorkoutBut = findViewById(R.id.newWorkoutBut);
         editWorkoutBut = findViewById(R.id.editWorkoutBut);
