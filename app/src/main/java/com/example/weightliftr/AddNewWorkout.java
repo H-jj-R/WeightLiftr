@@ -1,5 +1,6 @@
 package com.example.weightliftr;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -64,12 +65,12 @@ public class AddNewWorkout extends AppCompatActivity {
         exerciseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseNames);
         addedExList.setAdapter(exerciseAdapter);
 
-        newExBut.setOnClickListener(v -> newExFunc());
+        newExBut.setOnClickListener(this::newExFunc);
 
-        createBut.setOnClickListener(v -> createFunc());
+        createBut.setOnClickListener(this::createFunc);
     }
 
-    private void newExFunc() {
+    private void newExFunc(@NonNull View v) {
         if (addExLayout.getVisibility() == View.GONE) {
             addExLayout.setVisibility(View.VISIBLE);
             newExBut.setText("Add This Exercise");
@@ -101,7 +102,7 @@ public class AddNewWorkout extends AppCompatActivity {
         }
     }
 
-    private void createFunc() {
+    private void createFunc(@NonNull View v) {
         EditText workoutNameIn = findViewById(R.id.workoutNameIn);
         if (workoutNameIn.getText().toString().equals("")) {
             sendToast("Workout name field empty!");
@@ -110,7 +111,7 @@ public class AddNewWorkout extends AppCompatActivity {
         } else {
             Workout w = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
             workoutDBHandler.insertWorkout(w);
-            finish();
+            this.finish();
             startActivity(getIntent());
         }
     }

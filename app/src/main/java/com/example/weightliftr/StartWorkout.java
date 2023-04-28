@@ -119,18 +119,18 @@ public class StartWorkout extends AppCompatActivity {
             }
         };
 
-        startSetBut.setOnClickListener(v1 -> startSetFunc());
-        finishSetBut.setOnClickListener(v1 -> finishSetFunc());
+        startSetBut.setOnClickListener(this::startSetFunc);
+        finishSetBut.setOnClickListener(this::finishSetFunc);
     }
 
-    private void startSetFunc() {
+    private void startSetFunc(View v) {
         if (setTimerTextView.getText() != "SET IN PROGRESS") {
             countDownTimer.cancel();
             setTimerTextView.setText("SET IN PROGRESS");
         }
     }
 
-    private void finishSetFunc() {
+    private void finishSetFunc(View v) {
         if (setTimerTextView.getText() == "SET IN PROGRESS") {
             currentSetNum++;
             if (currentSetNum > totalSets) {

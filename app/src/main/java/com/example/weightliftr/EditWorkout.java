@@ -1,5 +1,6 @@
 package com.example.weightliftr;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -95,7 +96,7 @@ public class EditWorkout extends AppCompatActivity {
         }
     }
 
-    private void startButFunc(View v) {
+    private void startButFunc(@NonNull View v) {
         linearLayout.removeAllViews();
         View baseEditView = getLayoutInflater().inflate(R.layout.edit_workout_details, linearLayout, false);
         linearLayout.addView(baseEditView);
@@ -145,7 +146,7 @@ public class EditWorkout extends AppCompatActivity {
         deleteWorkoutBut.setOnClickListener(this::deleteWorkoutButFunc);
     }
 
-    private void saveButFunc(View v) {
+    private void saveButFunc(@NonNull View v) {
         try {
             if (!workoutNameEditText.getText().toString().equals("")) {
                 List<Exercise> updatedExercises = new ArrayList<>();
@@ -162,7 +163,7 @@ public class EditWorkout extends AppCompatActivity {
                 updatedWorkout.setId(currentWorkout.getId());
                 workoutDBHandler.updateWorkout(updatedWorkout);
                 sendToast("Changes saved.");
-                finish();
+                this.finish();
                 startActivity(getIntent());
             } else {
                 sendToast("Workout name empty!");
@@ -172,16 +173,16 @@ public class EditWorkout extends AppCompatActivity {
         }
     }
 
-    private void discardButFunc(View v) {
+    private void discardButFunc(@NonNull View v) {
         sendToast("Changes discarded.");
-        finish();
+        this.finish();
         startActivity(getIntent());
     }
 
-    private void deleteWorkoutButFunc(View v) {
+    private void deleteWorkoutButFunc(@NonNull View v) {
         workoutDBHandler.removeWorkout(currentWorkout);
         sendToast("Workout deleted.");
-        finish();
+        this.finish();
         startActivity(getIntent());
     }
 
