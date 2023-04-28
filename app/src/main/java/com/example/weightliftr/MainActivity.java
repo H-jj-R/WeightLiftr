@@ -49,16 +49,15 @@ public class MainActivity extends AppCompatActivity {
                                              ViewAllWorkouts.class };
 
         int randomIndex1 = new Random().nextInt(activityClasses.length);
-        suggestionBut1.setText(activityNames[randomIndex1] + "?");
+        suggestionBut1.setText(getString(R.string.suggestion_text, activityNames[randomIndex1]));
         setButtonClickEvent(suggestionBut1, activityClasses[randomIndex1]);
 
         int randomIndex2;
         do {
             randomIndex2 = new Random().nextInt(activityClasses.length);
         } while (randomIndex2 == randomIndex1);
-        suggestionBut2.setText(activityNames[randomIndex2] + "?");
+        suggestionBut2.setText(getString(R.string.suggestion_text, activityNames[randomIndex2]));
         setButtonClickEvent(suggestionBut2, activityClasses[randomIndex2]);
-
     }
 
     private void setButtonClickEvent(@NonNull Button button, Class<?> nextActivityClass) {

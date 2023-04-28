@@ -73,7 +73,7 @@ public class AddNewWorkout extends AppCompatActivity {
     private void newExFunc(@NonNull View v) {
         if (addExLayout.getVisibility() == View.GONE) {
             addExLayout.setVisibility(View.VISIBLE);
-            newExBut.setText("Add This Exercise");
+            newExBut.setText(R.string.new_ex_adding);
         } else {
             try {
                 if (!exNameEditText.getText().toString().equals("")
@@ -92,7 +92,7 @@ public class AddNewWorkout extends AppCompatActivity {
                     exRepsEditText.getText().clear();
                     exRestTimeEditText.getText().clear();
                     addExLayout.setVisibility(View.GONE);
-                    newExBut.setText("Add New Exercise?");
+                    newExBut.setText(R.string.new_ex_not_adding);
                 } else {
                     sendToast("Input not valid!");
                 }

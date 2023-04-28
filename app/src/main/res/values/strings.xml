@@ -1,3 +1,37 @@
 <resources>
+    <!-- Used in multiple activities -->
     <string name="app_name">WeightLiftr</string>
+    <string name="input_not_valid">Input Not Valid!</string>
+
+    <!-- Used in activity_add_new_workout -->
+    <string name="new_ex_adding">Add This Exercise</string>
+    <string name="new_ex_not_adding">Add New Exercise?</string>
+
+    <!-- Used in activity_edit_workout -->
+
+
+    <!-- Used in activity_main -->
+    <string name="suggestion_text">%1$s?</string>
+
+    <!-- Used in activity_start_workout -->
+
+
+    <!-- Used in activity_view_all_workouts -->
+
+
+    <!-- Used in edit_workout_details -->
+
+
+    <!-- Used in edit_workout_exercises -->
+
+
+    <!-- Used in read_only_list_item -->
+
+
+    <!-- Used in start_workout_list_item -->
+
+
+    <!-- Used in workout_in_progress -->
+
+
 </resources>
