@@ -22,13 +22,31 @@ import com.example.weightliftr.objects.Exercise;
 import com.example.weightliftr.objects.Workout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class EditWorkout extends AppCompatActivity {
 
+    private WorkoutDBHandler WorkoutDBHandler;
+
     private Button backBut;
-    private WorkoutDBHandlerKotlin WorkoutDBHandler;
+    private LinearLayout linearLayout;
+    private TextView workoutName;
+    private ImageButton startBut;
+    private TextView tv;
+    private EditText workoutNameEditText;
+    private LinearLayout verticalLayout;
+    private EditText nameEditText;
+    private EditText setsEditText;
+    private EditText repsEditText;
+    private EditText restTimeEditText;
+
+    private List<Workout> workouts;
+    private Exercise exercise;
+    private Map<Exercise, Map<String, EditText>> exerciseEditTexts;
+    private Map<String, EditText> editTexts;
 
     private Workout currentWorkout;
 
@@ -38,93 +56,103 @@ public class EditWorkout extends AppCompatActivity {
         setContentView(R.layout.activity_edit_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        WorkoutDBHandler = new WorkoutDBHandlerKotlin(this.getApplicationContext());
+        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v ->
                 startActivity(new Intent(EditWorkout.this, MainActivity.class))
         );
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayout);
+        linearLayout = findViewById(R.id.linearLayout);
 
-        List<Workout> workouts = WorkoutDBHandler.getAllWorkouts();
+        workouts = WorkoutDBHandler.getAllWorkouts();
 
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this)
                     .inflate(R.layout.start_workout_list_item, linearLayout, false);
 
-            TextView workoutName = view.findViewById(R.id.workoutName);
-            ImageButton startBut = view.findViewById(R.id.startBut);
+            workoutName = view.findViewById(R.id.workoutName);
+            startBut = view.findViewById(R.id.startBut);
 
             workoutName.setText(workouts.get(i).getName());
             startBut.setImageResource(R.drawable.ic_baseline_edit);
             startBut.setId(i);
 
-            startBut.setOnClickListener(v -> {
-                linearLayout.removeAllViews();
-                View newView = getLayoutInflater().inflate(R.layout.edit_workout_details, linearLayout, false);
-                linearLayout.addView(newView);
-
-                currentWorkout = workouts.get(v.getId());
-                TextView tv = newView.findViewById(R.id.titleTextView);
-                tv.setText(currentWorkout.getName());
-                EditText workoutNameEditText = newView.findViewById(R.id.workoutNameEditText);
-
-                LinearLayout verticalLayout = newView.findViewById(R.id.verticalLayout);
-                for (int j = 0; j < currentWorkout.getExercises().size(); j++) {
-
-                    View newNewView = getLayoutInflater().inflate(R.layout.edit_workout_exercises, verticalLayout, false);
-                    verticalLayout.addView(newNewView);
-
-                    // TODO: This will not work, need to change scope of some variables here
-
-                    EditText nameEditText = newNewView.findViewById(R.id.nameEditText);
-                    nameEditText.setId(j);
-                    EditText setsEditText = newNewView.findViewById(R.id.setsEditText);
-                    setsEditText.setId(j);
-                    EditText repsEditText = newNewView.findViewById(R.id.repsEditText);
-                    repsEditText.setId(j);
-                    EditText restTimeEditText = newNewView.findViewById(R.id.restTimeEditText);
-                    restTimeEditText.setId(j);
-
-                    List<Exercise> updatedExercises = new ArrayList<>();
-
-                    Button saveBut = newView.findViewById(R.id.saveBut);
-                    saveBut.setOnClickListener(v1 -> {
-                        try {
-                            if (!workoutNameEditText.getText().toString().equals("")
-                                    && !nameEditText.getText().toString().equals("")
-                                    && !setsEditText.getText().toString().equals("")
-                                    && !repsEditText.getText().toString().equals("")
-                                    && !restTimeEditText.getText().toString().equals("")) {
-                                long id = workouts.get(v.getId()).getId();
-                                String wName = workoutNameEditText.getText().toString();
-                                String exName = nameEditText.getText().toString();
-                                int sets = Integer.parseInt(setsEditText.getText().toString());
-                                int reps = Integer.parseInt(repsEditText.getText().toString());
-                                int restTime = Integer.parseInt(restTimeEditText.getText().toString());
-                                for (int k = 0; k < currentWorkout.getExercises().size(); k++) {
-                                    updatedExercises.add(new Exercise(exName, sets, reps, restTime));
-                                }
-                                Workout updatedWorkout = new Workout(wName, updatedExercises);
-                                updatedWorkout.setId(id);
-                                WorkoutDBHandler.updateWorkout(updatedWorkout);
-                            } else {
-                                sendWarning("Input not valid!");
-                            }
-                        } catch (Exception e) {
-                            sendWarning("Input not valid!");
-                        }
-                     });
-
-                }
-
-            });
+            startBut.setOnClickListener(this::startButFunc);
             linearLayout.addView(view);
         }
     }
 
-    public void sendWarning(String message) {
+    private void startButFunc(View v) {
+        linearLayout.removeAllViews();
+        View baseEditView = getLayoutInflater().inflate(R.layout.edit_workout_details, linearLayout, false);
+        linearLayout.addView(baseEditView);
+
+        currentWorkout = workouts.get(v.getId());
+        tv = baseEditView.findViewById(R.id.titleTextView);
+        tv.setText(currentWorkout.getName());
+        workoutNameEditText = baseEditView.findViewById(R.id.workoutNameEditText);
+        workoutNameEditText.setText(currentWorkout.getName());
+        verticalLayout = baseEditView.findViewById(R.id.verticalLayout);
+
+        exerciseEditTexts = new HashMap<>();
+
+        for (int i = 0; i < currentWorkout.getExercises().size(); i++) {
+            View exerciseEditView = getLayoutInflater().inflate(R.layout.edit_workout_exercises, verticalLayout, false);
+            verticalLayout.addView(exerciseEditView);
+
+            nameEditText = exerciseEditView.findViewById(R.id.nameEditText);
+            setsEditText = exerciseEditView.findViewById(R.id.setsEditText);
+            repsEditText = exerciseEditView.findViewById(R.id.repsEditText);
+            restTimeEditText = exerciseEditView.findViewById(R.id.restTimeEditText);
+
+            nameEditText.setText(currentWorkout.getExercises().get(i).getName());
+            setsEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getSets()));
+            repsEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getReps()));
+            restTimeEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getRestTime()));
+
+            exercise = new Exercise(nameEditText.getText().toString(),
+                    Integer.parseInt(setsEditText.getText().toString()),
+                    Integer.parseInt(repsEditText.getText().toString()),
+                    Integer.parseInt(restTimeEditText.getText().toString()));
+
+            editTexts = new HashMap<>();
+            editTexts.put("name", nameEditText);
+            editTexts.put("sets", setsEditText);
+            editTexts.put("reps", repsEditText);
+            editTexts.put("restTime", restTimeEditText);
+            exerciseEditTexts.put(exercise, editTexts);
+        }
+
+        Button saveBut = baseEditView.findViewById(R.id.saveBut);
+        saveBut.setOnClickListener(this::saveButFunc);
+    }
+
+    private void saveButFunc(View v) {
+        try {
+            if (!workoutNameEditText.getText().toString().equals("")) {
+                List<Exercise> updatedExercises = new ArrayList<>();
+                for (Exercise exercise : exerciseEditTexts.keySet()) {
+                    Map<String, EditText> editTexts = exerciseEditTexts.get(exercise);
+                    assert editTexts != null;
+                    Exercise updatedExercise = new Exercise(Objects.requireNonNull(editTexts.get("name")).getText().toString(),
+                            Integer.parseInt(Objects.requireNonNull(editTexts.get("sets")).getText().toString()),
+                            Integer.parseInt(Objects.requireNonNull(editTexts.get("reps")).getText().toString()),
+                            Integer.parseInt(Objects.requireNonNull(editTexts.get("restTime")).getText().toString()));
+                    updatedExercises.add(updatedExercise);
+                }
+                Workout updatedWorkout = new Workout(workoutNameEditText.getText().toString(), updatedExercises);
+                updatedWorkout.setId(currentWorkout.getId());
+                WorkoutDBHandler.updateWorkout(updatedWorkout);
+            } else {
+                sendWarning("Workout name empty!");
+            }
+        } catch (Exception e) {
+            sendWarning("Input not valid!");
+        }
+    }
+
+    private void sendWarning(String message) {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));

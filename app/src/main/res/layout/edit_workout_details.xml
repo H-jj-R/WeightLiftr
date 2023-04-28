@@ -53,10 +53,8 @@
     <ScrollView
         android:id="@+id/verticalScrollView"
         android:layout_width="405dp"
-        android:layout_height="520dp"
-        android:fillViewport="true"
+        android:layout_height="230dp"
         android:layout_below="@id/workoutNameEditText">
-
 
         <LinearLayout
             android:id="@+id/verticalLayout"

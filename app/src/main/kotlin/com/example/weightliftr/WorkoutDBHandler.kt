@@ -12,9 +12,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
-class WorkoutDBHandlerKotlin(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-
-    private val gson = Gson()
+class WorkoutDBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
         private const val DATABASE_NAME = "workouts.db"
@@ -25,6 +23,8 @@ class WorkoutDBHandlerKotlin(context: Context) : SQLiteOpenHelper(context, DATAB
         private const val COLUMN_NAME = "name"
         private const val COLUMN_EXERCISES = "exercises"
     }
+
+    private val gson = Gson()
 
     override fun onCreate(db: SQLiteDatabase) {
         val createTable = "CREATE TABLE $TABLE_WORKOUTS " +

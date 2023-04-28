@@ -26,7 +26,7 @@ import java.util.Objects;
 
 public class AddNewWorkout extends AppCompatActivity {
 
-    private WorkoutDBHandlerKotlin WorkoutDBHandler;
+    private WorkoutDBHandler WorkoutDBHandler;
 
     private Button backBut;
     private Button createBut;
@@ -48,7 +48,7 @@ public class AddNewWorkout extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        WorkoutDBHandler = new WorkoutDBHandlerKotlin(this.getApplicationContext());
+        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
         backBut = findViewById(R.id.backBut);
         createBut = findViewById(R.id.createBut);
@@ -72,7 +72,7 @@ public class AddNewWorkout extends AppCompatActivity {
         createBut.setOnClickListener(v -> createFunc());
     }
 
-    public void newExFunc() {
+    private void newExFunc() {
         if (addExLayout.getVisibility() == View.GONE) {
             addExLayout.setVisibility(View.VISIBLE);
             newExBut.setText("Add This Exercise");
@@ -104,7 +104,7 @@ public class AddNewWorkout extends AppCompatActivity {
         }
     }
 
-    public void createFunc() {
+    private void createFunc() {
         EditText workoutNameIn = findViewById(R.id.workoutNameIn);
         if (workoutNameIn.getText().toString().equals("")) {
             sendWarning("Workout name field empty!");
@@ -116,7 +116,7 @@ public class AddNewWorkout extends AppCompatActivity {
         }
     }
 
-    public void sendWarning(String message) {
+    private void sendWarning(String message) {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));

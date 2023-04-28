@@ -8,6 +8,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.weightliftr.objects.Exercise;
+import com.example.weightliftr.objects.Workout;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
@@ -17,13 +22,11 @@ import java.util.Random;
 // TODO: (If time) Improve XML for handling of other devices
 public class MainActivity extends AppCompatActivity {
 
-    // private WorkoutDBHandler workoutDBHandler;
-    private WorkoutDBHandlerKotlin workoutDBHandlerKotlin;
-
+    private WorkoutDBHandler workoutDBHandler;
 
     private Button newWorkoutBut;
     private Button editWorkoutBut;
-    private Button pastWorkoutsBut;
+    private Button allWorkoutsBut;
     private Button startWorkoutBut;
     private Button suggestionBut1;
     private Button suggestionBut2;
@@ -33,25 +36,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.abs_layout);
-        //workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
-        workoutDBHandlerKotlin = new WorkoutDBHandlerKotlin(this.getApplicationContext());
+        workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
         newWorkoutBut = findViewById(R.id.newWorkoutBut);
         editWorkoutBut = findViewById(R.id.editWorkoutBut);
-        pastWorkoutsBut = findViewById(R.id.allWorkoutsBut);
+        allWorkoutsBut = findViewById(R.id.allWorkoutsBut);
         startWorkoutBut = findViewById(R.id.startWorkoutBut);
         suggestionBut1 = findViewById(R.id.suggestionBut1);
         suggestionBut2 = findViewById(R.id.suggestionBut2);
 
         setButtonClickEvent(newWorkoutBut, AddNewWorkout.class);
         setButtonClickEvent(editWorkoutBut, EditWorkout.class);
-        setButtonClickEvent(pastWorkoutsBut, ViewAllWorkouts.class);
+        setButtonClickEvent(allWorkoutsBut, ViewAllWorkouts.class);
         setButtonClickEvent(startWorkoutBut, StartWorkout.class);
 
         String[] activityNames = { (String) newWorkoutBut.getText(),
                                          (String) editWorkoutBut.getText(),
-                                         (String) pastWorkoutsBut.getText() };
+                                         (String) allWorkoutsBut.getText() };
         Class<?>[] activityClasses = { AddNewWorkout.class,
                                              EditWorkout.class,
                                              ViewAllWorkouts.class };
