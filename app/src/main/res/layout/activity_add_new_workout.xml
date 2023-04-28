@@ -94,7 +94,9 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textColorHint="#A1FFFFFF"
-            android:hint="@string/exercise_name" />
+            android:hint="@string/exercise_name"
+            android:maxLines="1"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/exSetsEditText"
@@ -102,7 +104,9 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textColorHint="#A1FFFFFF"
-            android:hint="@string/exercise_sets" />
+            android:hint="@string/exercise_sets"
+            android:maxLines="1"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/exRepsEditText"
@@ -110,7 +114,9 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textColorHint="#A1FFFFFF"
-            android:hint="@string/exercise_reps" />
+            android:hint="@string/exercise_reps"
+            android:maxLines="1"
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/exRestTimeEditText"
@@ -118,7 +124,10 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textColorHint="#A1FFFFFF"
-            android:hint="@string/exercise_rest_time" />
+            android:hint="@string/exercise_rest_time"
+            android:maxLines="1"
+            android:inputType="text" />
+
     </LinearLayout>
 
     <ListView
@@ -130,4 +139,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
