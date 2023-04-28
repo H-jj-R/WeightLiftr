@@ -29,25 +29,13 @@ import java.util.Objects;
 
 public class EditWorkout extends AppCompatActivity {
 
-    private WorkoutDBHandler WorkoutDBHandler;
+    private WorkoutDBHandler workoutDBHandler;
 
-    private Button backBut;
     private LinearLayout linearLayout;
-    private TextView workoutName;
-    private ImageButton startBut;
-    private TextView tv;
     private EditText workoutNameEditText;
-    private LinearLayout verticalLayout;
-    private EditText nameEditText;
-    private EditText setsEditText;
-    private EditText repsEditText;
-    private EditText restTimeEditText;
 
-    private List<Workout> workouts;
-    private Exercise exercise;
-    private Map<Exercise, Map<String, EditText>> exerciseEditTexts;
-    private Map<String, EditText> editTexts;
-
+    private List<Workout> allWorkouts;
+    private Map<Exercise, Map<String, EditText>> exerciseEditTextsMap;
     private Workout currentWorkout;
 
     @Override
@@ -56,25 +44,49 @@ public class EditWorkout extends AppCompatActivity {
         setContentView(R.layout.activity_edit_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
+        workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
-        backBut = findViewById(R.id.backBut);
+//        List<Exercise> exercises= new ArrayList<>();
+//        exercises.add(new Exercise("Quad Pull", 3, 10, 60));
+//        exercises.add(new Exercise("Squat", 3, 10, 60));
+//        exercises.add(new Exercise("Calf Raise", 3, 15, 60));
+//
+//        Workout w = new Workout("Leg Workout", exercises);
+//        workoutDBHandler.insertWorkout(w);
+//
+//        List<Exercise> exercises1 = new ArrayList<>();
+//        exercises1.add(new Exercise("Bicep Curls", 4, 10, 35));
+//        exercises1.add(new Exercise("Tricep Pulls", 4, 10, 35));
+//        exercises1.add(new Exercise("Forearm Stretches", 3, 15, 35));
+//
+//        Workout w1 = new Workout("Ind. Muscle Workout", exercises1);
+//        workoutDBHandler.insertWorkout(w1);
+//
+//        List<Exercise> exercises2 = new ArrayList<>();
+//        exercises2.add(new Exercise("Bench Press", 3, 10, 110));
+//        exercises2.add(new Exercise("Seated Row", 3, 10, 110));
+//        exercises2.add(new Exercise("Lat Pull", 2, 15, 110));
+//
+//        Workout w2 = new Workout("Upper Workout", exercises2);
+//        workoutDBHandler.insertWorkout(w2);
+
+        Button backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v ->
                 startActivity(new Intent(EditWorkout.this, MainActivity.class))
         );
 
         linearLayout = findViewById(R.id.linearLayout);
 
-        workouts = WorkoutDBHandler.getAllWorkouts();
+        allWorkouts = workoutDBHandler.getAllWorkouts();
 
-        for (int i = 0; i < workouts.size(); i++) {
+        for (int i = 0; i < allWorkouts.size(); i++) {
             View view = LayoutInflater.from(this)
                     .inflate(R.layout.start_workout_list_item, linearLayout, false);
 
-            workoutName = view.findViewById(R.id.workoutName);
-            startBut = view.findViewById(R.id.startBut);
+            TextView workoutName = view.findViewById(R.id.workoutName);
+            ImageButton startBut = view.findViewById(R.id.startBut);
 
-            workoutName.setText(workouts.get(i).getName());
+            workoutName.setText(allWorkouts.get(i).getName());
             startBut.setImageResource(R.drawable.ic_baseline_edit);
             startBut.setId(i);
 
@@ -88,52 +100,57 @@ public class EditWorkout extends AppCompatActivity {
         View baseEditView = getLayoutInflater().inflate(R.layout.edit_workout_details, linearLayout, false);
         linearLayout.addView(baseEditView);
 
-        currentWorkout = workouts.get(v.getId());
-        tv = baseEditView.findViewById(R.id.titleTextView);
+        currentWorkout = allWorkouts.get(v.getId());
+        TextView tv = baseEditView.findViewById(R.id.titleTextView);
         tv.setText(currentWorkout.getName());
         workoutNameEditText = baseEditView.findViewById(R.id.workoutNameEditText);
         workoutNameEditText.setText(currentWorkout.getName());
-        verticalLayout = baseEditView.findViewById(R.id.verticalLayout);
+        LinearLayout verticalLayout = baseEditView.findViewById(R.id.verticalLayout);
 
-        exerciseEditTexts = new HashMap<>();
+        exerciseEditTextsMap = new HashMap<>();
 
         for (int i = 0; i < currentWorkout.getExercises().size(); i++) {
             View exerciseEditView = getLayoutInflater().inflate(R.layout.edit_workout_exercises, verticalLayout, false);
             verticalLayout.addView(exerciseEditView);
 
-            nameEditText = exerciseEditView.findViewById(R.id.nameEditText);
-            setsEditText = exerciseEditView.findViewById(R.id.setsEditText);
-            repsEditText = exerciseEditView.findViewById(R.id.repsEditText);
-            restTimeEditText = exerciseEditView.findViewById(R.id.restTimeEditText);
+            EditText nameEditText = exerciseEditView.findViewById(R.id.nameEditText);
+            EditText setsEditText = exerciseEditView.findViewById(R.id.setsEditText);
+            EditText repsEditText = exerciseEditView.findViewById(R.id.repsEditText);
+            EditText restTimeEditText = exerciseEditView.findViewById(R.id.restTimeEditText);
 
             nameEditText.setText(currentWorkout.getExercises().get(i).getName());
             setsEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getSets()));
             repsEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getReps()));
             restTimeEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getRestTime()));
 
-            exercise = new Exercise(nameEditText.getText().toString(),
+            Exercise exercise = new Exercise(nameEditText.getText().toString(),
                     Integer.parseInt(setsEditText.getText().toString()),
                     Integer.parseInt(repsEditText.getText().toString()),
                     Integer.parseInt(restTimeEditText.getText().toString()));
 
-            editTexts = new HashMap<>();
+            Map<String, EditText> editTexts = new HashMap<>();
             editTexts.put("name", nameEditText);
             editTexts.put("sets", setsEditText);
             editTexts.put("reps", repsEditText);
             editTexts.put("restTime", restTimeEditText);
-            exerciseEditTexts.put(exercise, editTexts);
+            exerciseEditTextsMap.put(exercise, editTexts);
         }
 
         Button saveBut = baseEditView.findViewById(R.id.saveBut);
+        Button discardBut = baseEditView.findViewById(R.id.discardBut);
+        Button deleteWorkoutBut = baseEditView.findViewById(R.id.deleteWorkoutBut);
+
         saveBut.setOnClickListener(this::saveButFunc);
+        discardBut.setOnClickListener(this::discardButFunc);
+        deleteWorkoutBut.setOnClickListener(this::deleteWorkoutButFunc);
     }
 
     private void saveButFunc(View v) {
         try {
             if (!workoutNameEditText.getText().toString().equals("")) {
                 List<Exercise> updatedExercises = new ArrayList<>();
-                for (Exercise exercise : exerciseEditTexts.keySet()) {
-                    Map<String, EditText> editTexts = exerciseEditTexts.get(exercise);
+                for (Exercise exercise : exerciseEditTextsMap.keySet()) {
+                    Map<String, EditText> editTexts = exerciseEditTextsMap.get(exercise);
                     assert editTexts != null;
                     Exercise updatedExercise = new Exercise(Objects.requireNonNull(editTexts.get("name")).getText().toString(),
                             Integer.parseInt(Objects.requireNonNull(editTexts.get("sets")).getText().toString()),
@@ -143,16 +160,32 @@ public class EditWorkout extends AppCompatActivity {
                 }
                 Workout updatedWorkout = new Workout(workoutNameEditText.getText().toString(), updatedExercises);
                 updatedWorkout.setId(currentWorkout.getId());
-                WorkoutDBHandler.updateWorkout(updatedWorkout);
+                workoutDBHandler.updateWorkout(updatedWorkout);
+                sendToast("Changes saved.");
+                finish();
+                startActivity(getIntent());
             } else {
-                sendWarning("Workout name empty!");
+                sendToast("Workout name empty!");
             }
         } catch (Exception e) {
-            sendWarning("Input not valid!");
+            sendToast("Input not valid!");
         }
     }
 
-    private void sendWarning(String message) {
+    private void discardButFunc(View v) {
+        sendToast("Changes discarded.");
+        finish();
+        startActivity(getIntent());
+    }
+
+    private void deleteWorkoutButFunc(View v) {
+        workoutDBHandler.removeWorkout(currentWorkout);
+        sendToast("Workout deleted.");
+        finish();
+        startActivity(getIntent());
+    }
+
+    private void sendToast(String message) {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));

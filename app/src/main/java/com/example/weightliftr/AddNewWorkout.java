@@ -26,20 +26,17 @@ import java.util.Objects;
 
 public class AddNewWorkout extends AppCompatActivity {
 
-    private WorkoutDBHandler WorkoutDBHandler;
+    private WorkoutDBHandler workoutDBHandler;
 
-    private Button backBut;
-    private Button createBut;
     private Button newExBut;
     private LinearLayout addExLayout;
     private EditText exNameEditText;
     private EditText exSetsEditText;
     private EditText exRepsEditText;
     private EditText exRestTimeEditText;
-    private ListView addedExList;
 
-    private List<Exercise> exercisesToAdd = new ArrayList<>();
-    private List<String> exerciseNames = new ArrayList<>();
+    private final List<Exercise> exercisesToAdd = new ArrayList<>();
+    private final List<String> exerciseNames = new ArrayList<>();
     private ArrayAdapter<String> exerciseAdapter;
 
     @Override
@@ -48,17 +45,17 @@ public class AddNewWorkout extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
+        workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
-        backBut = findViewById(R.id.backBut);
-        createBut = findViewById(R.id.createBut);
+        Button backBut = findViewById(R.id.backBut);
+        Button createBut = findViewById(R.id.createBut);
         newExBut = findViewById(R.id.newExBut);
         addExLayout = findViewById(R.id.addExLayout);
         exNameEditText = findViewById(R.id.exNameEditText);
         exSetsEditText = findViewById(R.id.exSetsEditText);
         exRepsEditText = findViewById(R.id.exRepsEditText);
         exRestTimeEditText = findViewById(R.id.exRestTimeEditText);
-        addedExList = findViewById(R.id.addedExList);
+        ListView addedExList = findViewById(R.id.addedExList);
 
         backBut.setOnClickListener(v ->
                 startActivity(new Intent(AddNewWorkout.this, MainActivity.class))
@@ -96,10 +93,10 @@ public class AddNewWorkout extends AppCompatActivity {
                     addExLayout.setVisibility(View.GONE);
                     newExBut.setText("Add New Exercise?");
                 } else {
-                    sendWarning("Input not valid!");
+                    sendToast("Input not valid!");
                 }
             } catch (NumberFormatException e) {
-                sendWarning("Input not valid!");
+                sendToast("Input not valid!");
             }
         }
     }
@@ -107,16 +104,18 @@ public class AddNewWorkout extends AppCompatActivity {
     private void createFunc() {
         EditText workoutNameIn = findViewById(R.id.workoutNameIn);
         if (workoutNameIn.getText().toString().equals("")) {
-            sendWarning("Workout name field empty!");
+            sendToast("Workout name field empty!");
         } else if (exercisesToAdd.isEmpty()) {
-            sendWarning("No exercises have been added!");
+            sendToast("No exercises have been added!");
         } else {
             Workout w = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
-            WorkoutDBHandler.insertWorkout(w);
+            workoutDBHandler.insertWorkout(w);
+            finish();
+            startActivity(getIntent());
         }
     }
 
-    private void sendWarning(String message) {
+    private void sendToast(String message) {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));

@@ -21,35 +21,27 @@ import java.util.Objects;
 
 public class ViewAllWorkouts extends AppCompatActivity {
 
-    private WorkoutDBHandler WorkoutDBHandler;
-
-    private Button backBut;
-    private TextView itemTitle;
-
-    private List<Workout> workouts;
-    private LinearLayout linearLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_workouts);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
+       WorkoutDBHandler workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
-        backBut = findViewById(R.id.backBut);
+        Button backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v ->
                 startActivity(new Intent(ViewAllWorkouts.this, MainActivity.class))
         );
 
-        workouts = WorkoutDBHandler.getAllWorkouts();
+        List<Workout> workouts = workoutDBHandler.getAllWorkouts();
 
-        linearLayout = findViewById(R.id.linearLayout);
+        LinearLayout linearLayout = findViewById(R.id.linearLayout);
 
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, null);
             List<Exercise> exercises = workouts.get(i).getExercises();
-            itemTitle = view.findViewById(R.id.workoutNameTextView);
+            TextView itemTitle = view.findViewById(R.id.workoutNameTextView);
             itemTitle.setText(workouts.get(i).getName());
             linearLayout.addView(view);
 

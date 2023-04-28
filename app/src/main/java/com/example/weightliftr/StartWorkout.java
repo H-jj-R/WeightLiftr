@@ -26,19 +26,11 @@ import java.util.Objects;
 
 public class StartWorkout extends AppCompatActivity {
 
-    private WorkoutDBHandler WorkoutDBHandler;
-
-    private Button backBut;
-    private TextView titleTextView;
     private TextView exerciseTextView;
     private TextView setsTextView;
     private TextView repsTextView;
-    private Button startSetBut;
-    private Button finishSetBut;
     private TextView setTimerTextView;
     private LinearLayout linearLayout;
-    private TextView workoutName;
-    private ImageButton startBut;
 
     private CountDownTimer countDownTimer;
     private List<Workout> workouts;
@@ -57,22 +49,22 @@ public class StartWorkout extends AppCompatActivity {
         setContentView(R.layout.activity_start_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.abs_layout);
-        WorkoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
+        WorkoutDBHandler workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
-        backBut = findViewById(R.id.backBut);
+        Button backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v ->
                 startActivity(new Intent(StartWorkout.this, MainActivity.class))
         );
 
         linearLayout = findViewById(R.id.linearLayout);
-        workouts = WorkoutDBHandler.getAllWorkouts();
+        workouts = workoutDBHandler.getAllWorkouts();
 
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this)
                     .inflate(R.layout.start_workout_list_item, linearLayout, false);
 
-            workoutName = view.findViewById(R.id.workoutName);
-            startBut = view.findViewById(R.id.startBut);
+            TextView workoutName = view.findViewById(R.id.workoutName);
+            ImageButton startBut = view.findViewById(R.id.startBut);
 
             workoutName.setText(workouts.get(i).getName());
             startBut.setId(i);
@@ -89,12 +81,12 @@ public class StartWorkout extends AppCompatActivity {
         linearLayout.addView(newView);
         currentWorkout = workouts.get(v.getId());
 
-        titleTextView = newView.findViewById(R.id.titleTextView);
+        TextView titleTextView = newView.findViewById(R.id.titleTextView);
         exerciseTextView = newView.findViewById(R.id.exerciseTextView);
         setsTextView = newView.findViewById(R.id.setsTextView);
         repsTextView = newView.findViewById(R.id.repsTextView);
-        startSetBut = newView.findViewById(R.id.startSetBut);
-        finishSetBut = newView.findViewById(R.id.finishSetBut);
+        Button startSetBut = newView.findViewById(R.id.startSetBut);
+        Button finishSetBut = newView.findViewById(R.id.finishSetBut);
         setTimerTextView = newView.findViewById(R.id.setTimerTextView);
 
         titleTextView.setText(currentWorkout.getName());
@@ -145,8 +137,8 @@ public class StartWorkout extends AppCompatActivity {
                 currentExerciseNum++;
                 currentSetNum = 1;
                 if (currentExerciseNum > totalExercises) {
-                    startActivity(new Intent(StartWorkout.this, MainActivity.class));
-                    // TODO: Do something different when workout finished
+                    finish();
+                    startActivity(getIntent());
                 }
             }
             exerciseTextView.setText(currentWorkout.getExercises().get(currentExerciseNum).getName());
