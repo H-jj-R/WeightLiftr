@@ -1,37 +1,45 @@
 <resources>
     <!-- Used in multiple activities -->
     <string name="app_name">WeightLiftr</string>
+    <string name="back_to_menu">Back To Menu</string>
     <string name="input_not_valid">Input Not Valid!</string>
+    <string name="workout_name">Workout Name</string>
+    <string name="exercise_name">Exercise Name</string>
+    <string name="exercise_sets">Sets</string>
+    <string name="exercise_reps">Reps</string>
+    <string name="exercise_rest_time">Rest Time (Seconds)</string>
 
-    <!-- Used in activity_add_new_workout -->
+    <!-- Used only in activity_add_new_workout -->
+    <string name="create_new_workout">Create New Workout</string>
+    <string name="create">Create</string>
     <string name="new_ex_adding">Add This Exercise</string>
     <string name="new_ex_not_adding">Add New Exercise?</string>
 
-    <!-- Used in activity_edit_workout -->
+    <!-- Used only in activity_edit_workout -->
+    <string name="edit_existing_workout">Edit Existing Workout</string>
 
-
-    <!-- Used in activity_main -->
+    <!-- Used only in activity_main -->
     <string name="suggestion_text">%1$s?</string>
 
-    <!-- Used in activity_start_workout -->
+    <!-- Used only in activity_start_workout -->
 
 
-    <!-- Used in activity_view_all_workouts -->
+    <!-- Used only in activity_view_all_workouts -->
 
 
-    <!-- Used in edit_workout_details -->
+    <!-- Used only in edit_workout_details -->
 
 
-    <!-- Used in edit_workout_exercises -->
+    <!-- Used only in edit_workout_exercises -->
 
 
-    <!-- Used in read_only_list_item -->
+    <!-- Used only in read_only_list_item -->
 
 
-    <!-- Used in start_workout_list_item -->
+    <!-- Used only in start_workout_list_item -->
 
 
-    <!-- Used in workout_in_progress -->
+    <!-- Used only in workout_in_progress -->
 
 
 </resources>
