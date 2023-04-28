@@ -20,6 +20,10 @@ import java.util.Random;
 // TODO: Improve variable names and code structure
 // TODO: Style every activity better
 // TODO: (If time) Improve XML for handling of other devices
+
+/**
+ * Activity used as a menu screen, which links all activities.
+ */
 public class MainActivity extends AppCompatActivity {
 
     @Override

@@ -28,6 +28,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Activity which allows user to edit the details of an existing workout.
+ */
 public class EditWorkout extends AppCompatActivity {
 
     private WorkoutDBHandler workoutDBHandler;

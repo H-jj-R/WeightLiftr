@@ -1,9 +1,10 @@
 package com.example.weightliftr.objects;
 
-import com.example.weightliftr.objects.Exercise;
-
 import java.util.List;
 
+/**
+ * Object for storing details of a workout.
+ */
 public class Workout {
     private long id;
     private String name;

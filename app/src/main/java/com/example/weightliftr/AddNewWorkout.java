@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Activity which allows user to add a new workout to the database.
+ */
 public class AddNewWorkout extends AppCompatActivity {
 
     private WorkoutDBHandler workoutDBHandler;

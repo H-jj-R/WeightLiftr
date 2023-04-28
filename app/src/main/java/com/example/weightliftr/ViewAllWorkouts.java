@@ -19,6 +19,9 @@ import com.example.weightliftr.objects.Workout;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Activity which allows the user to quickly and easily view the details of all workouts they've created.
+ */
 public class ViewAllWorkouts extends AppCompatActivity {
 
     List<Exercise> exercises;

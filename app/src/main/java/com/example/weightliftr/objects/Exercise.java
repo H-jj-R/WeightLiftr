@@ -1,5 +1,8 @@
 package com.example.weightliftr.objects;
 
+/**
+ * Object for storing an exercise's details.
+ */
 public class Exercise {
     private String name;
     private int sets;

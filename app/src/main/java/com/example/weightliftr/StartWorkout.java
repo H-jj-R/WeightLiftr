@@ -24,6 +24,9 @@ import com.example.weightliftr.objects.Workout;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Activity which allows the user to begin one of the workouts they've created.
+ */
 public class StartWorkout extends AppCompatActivity {
 
     private TextView exerciseTextView;

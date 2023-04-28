@@ -12,6 +12,9 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
+/**
+ * Class which connects application to a local SQLite database.
+ */
 class WorkoutDBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
