@@ -105,8 +105,6 @@ public class EditWorkout extends AppCompatActivity {
         linearLayout.addView(baseEditView);
 
         currentWorkout = allWorkouts.get(v.getId());
-        TextView tv = baseEditView.findViewById(R.id.titleTextView);
-        tv.setText(currentWorkout.getName());
         workoutNameEditText = baseEditView.findViewById(R.id.workoutNameEditText);
         workoutNameEditText.setText(currentWorkout.getName());
         LinearLayout verticalLayout = baseEditView.findViewById(R.id.verticalLayout);

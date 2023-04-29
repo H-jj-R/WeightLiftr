@@ -21,6 +21,7 @@
     <string name="discard">Discard</string>
     <string name="save">Save</string>
     <string name="delete_workout">Delete Workout?</string>
+    <string name="exercise_scroll_view_desc">Details of each exercise in the chosen workout.</string>
 
     <!-- Used only in activity_main -->
     <string name="suggestion_text">%1$s?</string>
@@ -33,6 +34,9 @@
     <string name="finish_set">Finish Set</string>
 
     <!-- Used only in activity_view_all_workouts -->
-    <string name="extra_workout_details">%1$s %2$s \n</string>
+    <string name="extra_workout_details">%1$s %2$s\n
+                                            \t\t\t\t - Sets: %3$d\n
+                                            \t\t\t\t - Reps: %4$d\n
+                                            \t\t\t\t - Rest Time: %5$ds\n</string>
 
 </resources>

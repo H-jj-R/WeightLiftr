@@ -1,71 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!-- TODO: Convert this class to ConstraintLayout -->
-
-    <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="33dp"
-        android:layout_marginEnd="186dp"
-        android:text="TITLE"
-        tools:layout_editor_absoluteX="187dp"
-        tools:layout_editor_absoluteY="61dp" />
 
     <EditText
         android:id="@+id/workoutNameEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="73dp"
-        android:layout_marginEnd="102dp"
+        android:layout_width="223dp"
+        android:layout_height="56dp"
         android:ems="10"
-        android:text="@string/workout_name"
+        android:inputType="text"
         android:maxLines="1"
-        android:inputType="text" />
+        android:text="@string/workout_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
     <Button
         android:id="@+id/discardBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="360dp"
-        android:layout_marginEnd="251dp"
-        android:text="@string/discard" />
+        android:text="@string/discard"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.563" />
 
     <Button
         android:id="@+id/saveBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="361dp"
-        android:layout_marginEnd="68dp"
-        android:text="@string/save" />
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.823"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.563" />
 
     <Button
         android:id="@+id/deleteWorkoutBut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="429dp"
-        android:layout_marginEnd="118dp"
-        android:text="@string/delete_workout" />
+        android:layout_width="174dp"
+        android:layout_height="53dp"
+        android:text="@string/delete_workout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.675" />
 
     <ScrollView
         android:id="@+id/verticalScrollView"
-        android:layout_width="405dp"
-        android:layout_height="230dp"
-        android:layout_below="@id/workoutNameEditText">
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        android:layout_below="@id/workoutNameEditText"
+        android:contentDescription="@string/exercise_scroll_view_desc"
+        app:layout_constraintBottom_toTopOf="@+id/saveBut"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workoutNameEditText"
+        app:layout_constraintVertical_bias="0.8">
 
         <LinearLayout
             android:id="@+id/verticalLayout"
@@ -75,4 +76,4 @@
 
     </ScrollView>
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

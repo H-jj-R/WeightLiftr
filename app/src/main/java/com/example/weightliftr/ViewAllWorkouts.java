@@ -43,7 +43,7 @@ public class ViewAllWorkouts extends AppCompatActivity {
 
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
         for (int i = 0; i < workouts.size(); i++) {
-            View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, null);
+            View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, linearLayout, false);
             exercises = workouts.get(i).getExercises();
             TextView itemTitle = view.findViewById(R.id.workoutNameTextView);
             itemTitle.setText(workouts.get(i).getName());
@@ -62,7 +62,9 @@ public class ViewAllWorkouts extends AppCompatActivity {
             for (int i = 0; i < exercises.size(); i++) {
                 List<Exercise> exercises = ((Workout) v.getTag()).getExercises();
                  extraDetailsTextView.setText(
-                         getString(R.string.extra_workout_details, extraDetailsTextView.getText(), exercises.get(i).getName()));
+                         getString(R.string.extra_workout_details, extraDetailsTextView.getText(),
+                                 exercises.get(i).getName(), exercises.get(i).getSets(), exercises.get(i).getReps(),
+                                 exercises.get(i).getRestTime()));
             }
             extraDetailsView.setVisibility(View.VISIBLE);
 
