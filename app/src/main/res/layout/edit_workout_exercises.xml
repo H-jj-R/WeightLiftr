@@ -6,8 +6,8 @@
 
     <EditText
         android:id="@+id/nameEditText"
-        android:hint="Exercise name"
-        android:layout_width="50dp"
+        android:hint="@string/exercise_name"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:maxLines="1"
@@ -15,29 +15,29 @@
 
     <EditText
         android:id="@+id/setsEditText"
-        android:hint="Sets"
+        android:hint="@string/exercise_sets"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:maxLines="1"
-        android:inputType="text" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/repsEditText"
-        android:hint="Reps"
+        android:hint="@string/exercise_reps"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:maxLines="1"
-        android:inputType="text" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/restTimeEditText"
-        android:hint="Rest Time"
+        android:hint="@string/exercise_rest_time"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:maxLines="1"
-        android:inputType="text" />
+        android:inputType="number" />
 
 </LinearLayout>

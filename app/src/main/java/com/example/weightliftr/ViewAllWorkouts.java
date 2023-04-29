@@ -42,7 +42,6 @@ public class ViewAllWorkouts extends AppCompatActivity {
         List<Workout> workouts = workoutDBHandler.getAllWorkouts();
 
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
-
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, null);
             exercises = workouts.get(i).getExercises();
@@ -50,6 +49,7 @@ public class ViewAllWorkouts extends AppCompatActivity {
             itemTitle.setText(workouts.get(i).getName());
             linearLayout.addView(view);
 
+            view.setTag(workouts.get(i));
             view.setOnClickListener(this::clickViewFunc);
         }
     }
@@ -58,10 +58,11 @@ public class ViewAllWorkouts extends AppCompatActivity {
         @SuppressLint("CutPasteId") View extraDetailsView = v.findViewById(R.id.exercisesTextView);
         @SuppressLint("CutPasteId") TextView extraDetailsTextView = v.findViewById(R.id.exercisesTextView);
 
-        // Toggle the visibility of the extra details for the clicked item
         if (extraDetailsView.getVisibility() == View.GONE) {
-            for (int j = 0; j < exercises.size(); j++) {
-                extraDetailsTextView.setText(extraDetailsTextView.getText() + exercises.get(j).getName() + "\n");
+            for (int i = 0; i < exercises.size(); i++) {
+                List<Exercise> exercises = ((Workout) v.getTag()).getExercises();
+                 extraDetailsTextView.setText(
+                         getString(R.string.extra_workout_details, extraDetailsTextView.getText(), exercises.get(i).getName()));
             }
             extraDetailsView.setVisibility(View.VISIBLE);
 
@@ -70,5 +71,4 @@ public class ViewAllWorkouts extends AppCompatActivity {
             extraDetailsView.setVisibility(View.GONE);
         }
     }
-
 }

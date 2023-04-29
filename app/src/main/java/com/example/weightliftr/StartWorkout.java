@@ -98,11 +98,11 @@ public class StartWorkout extends AppCompatActivity {
         exerciseTextView.setText(currentWorkout.getExercises().get(currentExerciseNum).getName());
         currentSetNum = 1;
         totalSets = currentWorkout.getExercises().get(currentExerciseNum).getSets();
-        setsTextView.setText("Current Set: " + currentSetNum + " / " + totalSets);
+        setsTextView.setText(getString(R.string.current_set_num, currentSetNum, totalSets));
         totalReps = currentWorkout.getExercises().get(currentExerciseNum).getReps();
         repsTextView.setText(String.valueOf(totalReps));
         restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();
-        setTimerTextView.setText("START NEXT SET");
+        setTimerTextView.setText(R.string.start_next_set);
 
         countDownTimer = new CountDownTimer(restTime * 1000L, 1000) {
             @Override
@@ -112,7 +112,7 @@ public class StartWorkout extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-                setTimerTextView.setText("START NEXT SET");
+                setTimerTextView.setText(R.string.start_next_set);
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));
@@ -127,14 +127,14 @@ public class StartWorkout extends AppCompatActivity {
     }
 
     private void startSetFunc(View v) {
-        if (setTimerTextView.getText() != "SET IN PROGRESS") {
+        if (setTimerTextView.getText() != getText(R.string.set_in_progress)) {
             countDownTimer.cancel();
-            setTimerTextView.setText("SET IN PROGRESS");
+            setTimerTextView.setText(R.string.set_in_progress);
         }
     }
 
     private void finishSetFunc(View v) {
-        if (setTimerTextView.getText() == "SET IN PROGRESS") {
+        if (setTimerTextView.getText() == getText(R.string.set_in_progress)) {
             currentSetNum++;
             if (currentSetNum > totalSets) {
                 currentExerciseNum++;
@@ -146,7 +146,7 @@ public class StartWorkout extends AppCompatActivity {
             }
             exerciseTextView.setText(currentWorkout.getExercises().get(currentExerciseNum).getName());
             totalSets = currentWorkout.getExercises().get(currentExerciseNum).getSets();
-            setsTextView.setText("Sets: " + currentSetNum + " / " + totalSets);
+            setsTextView.setText(getString(R.string.current_set_num, currentSetNum, totalSets));
             totalReps = currentWorkout.getExercises().get(currentExerciseNum).getReps();
             repsTextView.setText(String.valueOf(totalReps));
             restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();

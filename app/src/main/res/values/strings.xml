@@ -1,6 +1,6 @@
 <resources>
     <!-- Used in multiple activities -->
-    <string name="app_name">WeightLiftr</string>
+    <string name="app_name" translatable="false">WeightLiftr</string>
     <string name="back_to_menu">Back To Menu</string>
     <string name="input_not_valid">Input Not Valid!</string>
     <string name="workout_name">Workout Name</string>
@@ -8,6 +8,7 @@
     <string name="exercise_sets">Sets</string>
     <string name="exercise_reps">Reps</string>
     <string name="exercise_rest_time">Rest Time (Seconds)</string>
+    <string name="image_button_desc">Press To Select</string>
 
     <!-- Used only in activity_add_new_workout -->
     <string name="create_new_workout">Create New Workout</string>
@@ -17,29 +18,21 @@
 
     <!-- Used only in activity_edit_workout -->
     <string name="edit_existing_workout">Edit Existing Workout</string>
+    <string name="discard">Discard</string>
+    <string name="save">Save</string>
+    <string name="delete_workout">Delete Workout?</string>
 
     <!-- Used only in activity_main -->
     <string name="suggestion_text">%1$s?</string>
 
     <!-- Used only in activity_start_workout -->
-
+    <string name="current_set_num">Current Set: %1$d / %2$d</string>
+    <string name="start_next_set">Start Next Set!</string>
+    <string name="set_in_progress">Set In Progress</string>
+    <string name="start_set">Start Set</string>
+    <string name="finish_set">Finish Set</string>
 
     <!-- Used only in activity_view_all_workouts -->
-
-
-    <!-- Used only in edit_workout_details -->
-
-
-    <!-- Used only in edit_workout_exercises -->
-
-
-    <!-- Used only in read_only_list_item -->
-
-
-    <!-- Used only in start_workout_list_item -->
-
-
-    <!-- Used only in workout_in_progress -->
-
+    <string name="extra_workout_details">%1$s %2$s \n</string>
 
 </resources>
