@@ -19,6 +19,14 @@ public class Workout {
         this.id = id;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
+    }
+
     public long getId() {
         return id;
     }

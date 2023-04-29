@@ -79,7 +79,7 @@ public class EditWorkout extends AppCompatActivity {
                 startActivity(new Intent(EditWorkout.this, MainActivity.class))
         );
 
-        linearLayout = findViewById(R.id.linearLayout);
+        linearLayout = findViewById(R.id.editLinearLayout);
 
         allWorkouts = workoutDBHandler.getAllWorkouts();
 

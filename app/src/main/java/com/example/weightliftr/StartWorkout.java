@@ -24,6 +24,8 @@ import com.example.weightliftr.objects.Workout;
 import java.util.List;
 import java.util.Objects;
 
+// TODO: Figure out why this activity is broken
+
 /**
  * Activity which allows the user to begin one of the workouts they've created.
  */
@@ -59,7 +61,7 @@ public class StartWorkout extends AppCompatActivity {
                 startActivity(new Intent(StartWorkout.this, MainActivity.class))
         );
 
-        linearLayout = findViewById(R.id.linearLayout);
+        linearLayout = findViewById(R.id.startLinearLayout);
         workouts = workoutDBHandler.getAllWorkouts();
 
         for (int i = 0; i < workouts.size(); i++) {

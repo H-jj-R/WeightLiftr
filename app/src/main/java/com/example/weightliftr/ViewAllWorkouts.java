@@ -41,7 +41,7 @@ public class ViewAllWorkouts extends AppCompatActivity {
 
         List<Workout> workouts = workoutDBHandler.getAllWorkouts();
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayout);
+        LinearLayout linearLayout = findViewById(R.id.startLinearLayout);
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, linearLayout, false);
             exercises = workouts.get(i).getExercises();

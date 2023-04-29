@@ -16,6 +16,22 @@ public class Exercise {
         this.restTime = restTime;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSets(int sets) {
+        this.sets = sets;
+    }
+
+    public void setReps(int reps) {
+        this.reps = reps;
+    }
+
+    public void setRestTime(int restTime) {
+        this.restTime = restTime;
+    }
+
     public String getName() {
         return name;
     }
