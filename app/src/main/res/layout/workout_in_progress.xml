@@ -9,7 +9,8 @@
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TITLE"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,74 +23,79 @@
         android:id="@+id/exerciseTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EXERCISE NUMBER + NAME"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        app:layout_constraintVertical_bias="0.073" />
 
     <TextView
         android:id="@+id/setsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SET NUM1 OF NUM2"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.221" />
+        app:layout_constraintTop_toBottomOf="@+id/exerciseTextView"
+        app:layout_constraintVertical_bias="0.134" />
 
     <TextView
         android:id="@+id/repsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NUM OF REPS"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.28" />
+        app:layout_constraintTop_toBottomOf="@+id/setsTextView"
+        app:layout_constraintVertical_bias="0.119" />
 
     <Button
         android:id="@+id/startSetBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:text="@string/start_set"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.357" />
+        app:layout_constraintTop_toBottomOf="@+id/repsTextView"
+        app:layout_constraintVertical_bias="0.129" />
 
     <Button
         android:id="@+id/finishSetBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:text="@string/finish_set"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/startSetBut"
+        app:layout_constraintVertical_bias="0.202" />
 
     <TextView
         android:id="@+id/setTimerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TIME TO NEXT SET"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.585" />
+        app:layout_constraintTop_toBottomOf="@+id/finishSetBut"
+        app:layout_constraintVertical_bias="0.421" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
