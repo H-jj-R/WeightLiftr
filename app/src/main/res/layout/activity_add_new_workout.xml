@@ -38,6 +38,7 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <View
+        android:id="@+id/addSeparator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/white"

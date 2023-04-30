@@ -24,8 +24,6 @@ import com.example.weightliftr.objects.Workout;
 import java.util.List;
 import java.util.Objects;
 
-// TODO: Figure out why this activity is broken
-
 /**
  * Activity which allows the user to begin one of the workouts they've created.
  */
@@ -103,7 +101,7 @@ public class StartWorkout extends AppCompatActivity {
         totalSets = currentWorkout.getExercises().get(currentExerciseNum).getSets();
         setsTextView.setText(getString(R.string.current_set_num, currentSetNum, totalSets));
         totalReps = currentWorkout.getExercises().get(currentExerciseNum).getReps();
-        repsTextView.setText(String.valueOf(totalReps));
+        repsTextView.setText(getString(R.string.current_reps_num, totalReps));
         restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();
         setTimerTextView.setText(R.string.start_next_set);
 

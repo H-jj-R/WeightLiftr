@@ -33,6 +33,7 @@
 
     <!-- Used only in activity_start_workout -->
     <string name="current_set_num">Current Set: %1$d / %2$d</string>
+    <string name="current_reps_num">Reps: %1$d</string>
     <string name="start_next_set">Start Next Set!</string>
     <string name="set_in_progress">Set In Progress</string>
     <string name="start_set">Start Set</string>
