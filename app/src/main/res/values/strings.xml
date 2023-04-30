@@ -10,6 +10,7 @@
     <string name="exercise_rest_time">Rest Time (Seconds)</string>
     <string name="image_button_desc">Press To Select</string>
 
+
     <!-- Used only in activity_add_new_workout -->
     <string name="create_new_workout">Create New Workout</string>
     <string name="create">Create</string>
@@ -24,7 +25,13 @@
     <string name="exercise_scroll_view_desc">Details of each exercise in the chosen workout.</string>
 
     <!-- Used only in activity_main -->
+    <string name="suggested_for_today">Suggested For Today</string>
     <string name="suggestion_text">%1$s?</string>
+    <string name="nav_new_workout">Create a New Workout</string>
+    <string name="nav_edit_workout">Edit an Existing Workout</string>
+    <string name="nav_view_workouts">View All Current Workouts</string>
+    <string name="nav_start_workout">Start a Workout</string>
+
 
     <!-- Used only in activity_start_workout -->
     <string name="current_set_num">Current Set: %1$d / %2$d</string>
