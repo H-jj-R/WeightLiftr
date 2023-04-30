@@ -53,7 +53,7 @@ public class StartWorkout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.abs_layout);
+        getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         WorkoutDBHandler workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
         Button backBut = findViewById(R.id.backBut);
@@ -66,7 +66,7 @@ public class StartWorkout extends AppCompatActivity {
 
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this)
-                    .inflate(R.layout.start_workout_list_item, linearLayout, false);
+                    .inflate(R.layout.start_action_list_item, linearLayout, false);
 
             TextView workoutName = view.findViewById(R.id.workoutName);
             ImageButton startBut = view.findViewById(R.id.startBut);

@@ -47,7 +47,7 @@ public class EditWorkout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.abs_layout);
+        getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
 //        List<Exercise> exercises= new ArrayList<>();
@@ -85,7 +85,7 @@ public class EditWorkout extends AppCompatActivity {
 
         for (int i = 0; i < allWorkouts.size(); i++) {
             View view = LayoutInflater.from(this)
-                    .inflate(R.layout.start_workout_list_item, linearLayout, false);
+                    .inflate(R.layout.start_action_list_item, linearLayout, false);
 
             TextView workoutName = view.findViewById(R.id.workoutName);
             ImageButton startBut = view.findViewById(R.id.startBut);
@@ -104,47 +104,47 @@ public class EditWorkout extends AppCompatActivity {
         View baseEditView = getLayoutInflater().inflate(R.layout.edit_workout_details, linearLayout, false);
         linearLayout.addView(baseEditView);
 
-//        currentWorkout = allWorkouts.get(v.getId());
-//        workoutNameEditText = baseEditView.findViewById(R.id.workoutNameEditText);
-//        workoutNameEditText.setText(currentWorkout.getName());
-//        LinearLayout verticalLayout = baseEditView.findViewById(R.id.verticalLayout);
-//
-//        exerciseEditTextsMap = new HashMap<>();
-//
-//        for (int i = 0; i < currentWorkout.getExercises().size(); i++) {
-//            View exerciseEditView = getLayoutInflater().inflate(R.layout.edit_workout_exercises, verticalLayout, false);
-//            verticalLayout.addView(exerciseEditView);
-//
-//            EditText nameEditText = exerciseEditView.findViewById(R.id.nameEditText);
-//            EditText setsEditText = exerciseEditView.findViewById(R.id.setsEditText);
-//            EditText repsEditText = exerciseEditView.findViewById(R.id.repsEditText);
-//            EditText restTimeEditText = exerciseEditView.findViewById(R.id.restTimeEditText);
-//
-//            nameEditText.setText(currentWorkout.getExercises().get(i).getName());
-//            setsEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getSets()));
-//            repsEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getReps()));
-//            restTimeEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getRestTime()));
-//
-//            Exercise exercise = new Exercise(nameEditText.getText().toString(),
-//                    Integer.parseInt(setsEditText.getText().toString()),
-//                    Integer.parseInt(repsEditText.getText().toString()),
-//                    Integer.parseInt(restTimeEditText.getText().toString()));
-//
-//            Map<String, EditText> editTexts = new HashMap<>();
-//            editTexts.put("name", nameEditText);
-//            editTexts.put("sets", setsEditText);
-//            editTexts.put("reps", repsEditText);
-//            editTexts.put("restTime", restTimeEditText);
-//            exerciseEditTextsMap.put(exercise, editTexts);
-//        }
-//
-//        Button saveBut = baseEditView.findViewById(R.id.saveBut);
-//        Button discardBut = baseEditView.findViewById(R.id.discardBut);
-//        Button deleteWorkoutBut = baseEditView.findViewById(R.id.deleteWorkoutBut);
-//
-//        saveBut.setOnClickListener(this::saveButFunc);
-//        discardBut.setOnClickListener(this::discardButFunc);
-//        deleteWorkoutBut.setOnClickListener(this::deleteWorkoutButFunc);
+        currentWorkout = allWorkouts.get(v.getId());
+        workoutNameEditText = baseEditView.findViewById(R.id.workoutNameEditText);
+        workoutNameEditText.setText(currentWorkout.getName());
+        LinearLayout verticalLayout = baseEditView.findViewById(R.id.verticalLayout);
+
+        exerciseEditTextsMap = new HashMap<>();
+
+        for (int i = 0; i < currentWorkout.getExercises().size(); i++) {
+            View exerciseEditView = getLayoutInflater().inflate(R.layout.edit_workout_exercises, verticalLayout, false);
+            verticalLayout.addView(exerciseEditView);
+
+            EditText nameEditText = exerciseEditView.findViewById(R.id.nameEditText);
+            EditText setsEditText = exerciseEditView.findViewById(R.id.setsEditText);
+            EditText repsEditText = exerciseEditView.findViewById(R.id.repsEditText);
+            EditText restTimeEditText = exerciseEditView.findViewById(R.id.restTimeEditText);
+
+            nameEditText.setText(currentWorkout.getExercises().get(i).getName());
+            setsEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getSets()));
+            repsEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getReps()));
+            restTimeEditText.setText(String.valueOf(currentWorkout.getExercises().get(i).getRestTime()));
+
+            Exercise exercise = new Exercise(nameEditText.getText().toString(),
+                    Integer.parseInt(setsEditText.getText().toString()),
+                    Integer.parseInt(repsEditText.getText().toString()),
+                    Integer.parseInt(restTimeEditText.getText().toString()));
+
+            Map<String, EditText> editTexts = new HashMap<>();
+            editTexts.put("name", nameEditText);
+            editTexts.put("sets", setsEditText);
+            editTexts.put("reps", repsEditText);
+            editTexts.put("restTime", restTimeEditText);
+            exerciseEditTextsMap.put(exercise, editTexts);
+        }
+
+        Button saveBut = baseEditView.findViewById(R.id.saveBut);
+        Button discardBut = baseEditView.findViewById(R.id.discardBut);
+        Button deleteWorkoutBut = baseEditView.findViewById(R.id.deleteWorkoutBut);
+
+        saveBut.setOnClickListener(this::saveButFunc);
+        discardBut.setOnClickListener(this::discardButFunc);
+        deleteWorkoutBut.setOnClickListener(this::deleteWorkoutButFunc);
     }
 
     private void saveButFunc(@NonNull View v) {

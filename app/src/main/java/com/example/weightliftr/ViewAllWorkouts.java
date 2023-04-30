@@ -31,7 +31,7 @@ public class ViewAllWorkouts extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_workouts);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.abs_layout);
+        getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         WorkoutDBHandler workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
         Button backBut = findViewById(R.id.backBut);

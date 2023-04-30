@@ -48,7 +48,7 @@ public class AddNewWorkout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.abs_layout);
+        getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
         Button backBut = findViewById(R.id.backBut);
