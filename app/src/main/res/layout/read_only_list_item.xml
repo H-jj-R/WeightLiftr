@@ -11,17 +11,20 @@
         android:textColor="#B7FFFFFF"
         android:textSize="20sp"
         android:padding="16dp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/exercisesTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#81FFFFFF"
+        android:textColor="@color/extra_details_grey"
         android:textSize="16sp"
         android:padding="16dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/separator_grey" />
 
 </LinearLayout>

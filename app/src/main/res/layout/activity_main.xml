@@ -73,6 +73,7 @@
         android:text="@string/suggested_for_today"
         android:textAllCaps="false"
         android:textColor="@color/white"
+        android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
