@@ -173,14 +173,14 @@ public class StartWorkout extends AppCompatActivity {
     }
 
     private void createNotification() {
-        // Define the notification channel
+        // Define notification channel - required to send notifications in API >= 26
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("channel_main", "Main Channel", NotificationManager.IMPORTANCE_HIGH);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
 
-        // Create the notification
+        // Create the notification itself
         builder = new NotificationCompat.Builder(this, "channel_main")
                 .setSmallIcon(R.drawable.ic_baseline_notifications_active)
                 .setContentTitle("WeightLiftr")
@@ -192,20 +192,29 @@ public class StartWorkout extends AppCompatActivity {
     }
 
     private void showNotification() {
-        // Show the notification only if it's not already shown
-        if (!hasWindowFocus()) {
-            if (!isNotificationShown) {
-                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-                notificationManager.notify(1, builder.build());
-                isNotificationShown = true;
-            }
+        // Show the notification only if it's not already shown and the app is in the background
+        if (!hasWindowFocus() && !isNotificationShown) {
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            notificationManager.notify(1, builder.build());
+            isNotificationShown = true;
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Cancel the notification if it's shown
+        // When the app is brought back to the foreground, cancel the notification
+        if (isNotificationShown) {
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            notificationManager.cancel(1);
+            isNotificationShown = false;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // When the app is brought back to the foreground, cancel the notification
         if (isNotificationShown) {
             NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
             notificationManager.cancel(1);
