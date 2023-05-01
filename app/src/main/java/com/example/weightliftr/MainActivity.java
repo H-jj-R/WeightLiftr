@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Set base activity details and information
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_main);
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         Button suggestionBut1 = findViewById(R.id.suggestionBut1);
         Button suggestionBut2 = findViewById(R.id.suggestionBut2);
 
+        // Set each button to direct to a different activity
         setButtonClickEvent(newWorkoutBut, AddNewWorkout.class);
         setButtonClickEvent(editWorkoutBut, EditWorkout.class);
         setButtonClickEvent(allWorkoutsBut, ViewAllWorkouts.class);
@@ -48,10 +50,12 @@ public class MainActivity extends AppCompatActivity {
                                              EditWorkout.class,
                                              ViewAllWorkouts.class };
 
+        // Set suggestion buttons to direct to random activities
         int randomIndex1 = new Random().nextInt(activityClasses.length);
         suggestionBut1.setText(getString(R.string.suggestion_text, activityNames[randomIndex1]));
         setButtonClickEvent(suggestionBut1, activityClasses[randomIndex1]);
 
+        // Ensure suggestion buttons direct to different activities
         int randomIndex2;
         do {
             randomIndex2 = new Random().nextInt(activityClasses.length);

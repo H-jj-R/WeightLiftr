@@ -59,6 +59,7 @@
         android:textColor="@color/white"
         android:textColorHint="#A1FFFFFF"
         android:maxLines="1"
+        android:maxLength="20"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -112,6 +113,7 @@
             android:textColorHint="#A1FFFFFF"
             android:hint="@string/exercise_name"
             android:maxLines="1"
+            android:maxLength="20"
             android:inputType="text" />
 
         <EditText
@@ -122,6 +124,7 @@
             android:textColorHint="#A1FFFFFF"
             android:hint="@string/exercise_sets"
             android:maxLines="1"
+            android:maxLength="4"
             android:inputType="number" />
 
         <EditText
@@ -132,6 +135,7 @@
             android:textColorHint="#A1FFFFFF"
             android:hint="@string/exercise_reps"
             android:maxLines="1"
+            android:maxLength="4"
             android:inputType="number" />
 
         <EditText
@@ -142,6 +146,7 @@
             android:textColorHint="#A1FFFFFF"
             android:hint="@string/exercise_rest_time"
             android:maxLines="1"
+            android:maxLength="4"
             android:inputType="number" />
 
     </LinearLayout>

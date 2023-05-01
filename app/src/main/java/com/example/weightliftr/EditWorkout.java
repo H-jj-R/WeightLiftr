@@ -44,6 +44,7 @@ public class EditWorkout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Set base activity details and information
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_edit_workout);
@@ -51,6 +52,7 @@ public class EditWorkout extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
+        // TODO: REMOVE BEFORE FINISHING
 //        List<Exercise> exercises= new ArrayList<>();
 //        exercises.add(new Exercise("Quad Pull", 3, 10, 60));
 //        exercises.add(new Exercise("Squat", 3, 10, 60));
@@ -80,10 +82,10 @@ public class EditWorkout extends AppCompatActivity {
                 startActivity(new Intent(EditWorkout.this, MainActivity.class))
         );
 
-        linearLayout = findViewById(R.id.editLinearLayout);
-
         allWorkouts = workoutDBHandler.getAllWorkouts();
 
+        // Display all workout options from LinearLayout
+        linearLayout = findViewById(R.id.editLinearLayout);
         for (int i = 0; i < allWorkouts.size(); i++) {
             View view = LayoutInflater.from(this)
                     .inflate(R.layout.start_action_list_item, linearLayout, false);
@@ -101,6 +103,7 @@ public class EditWorkout extends AppCompatActivity {
     }
 
     private void startButFunc(@NonNull View v) {
+        // Once a workout has been selected, clear screen and show new View (from same LinearLayout)
         linearLayout.removeAllViews();
         View baseEditView = getLayoutInflater().inflate(R.layout.edit_workout_details, linearLayout, false);
         linearLayout.addView(baseEditView);
@@ -109,9 +112,9 @@ public class EditWorkout extends AppCompatActivity {
         workoutNameEditText = baseEditView.findViewById(R.id.workoutNameEditText);
         workoutNameEditText.setText(currentWorkout.getName());
         LinearLayout verticalLayout = baseEditView.findViewById(R.id.verticalLayout);
-
         exerciseEditTextsMap = new HashMap<>();
 
+        // Expand View again to show EditTexts for each exercise in workout
         for (int i = 0; i < currentWorkout.getExercises().size(); i++) {
             View exerciseEditView = getLayoutInflater().inflate(R.layout.edit_workout_exercises, verticalLayout, false);
             verticalLayout.addView(exerciseEditView);
@@ -131,6 +134,8 @@ public class EditWorkout extends AppCompatActivity {
                     Integer.parseInt(repsEditText.getText().toString()),
                     Integer.parseInt(restTimeEditText.getText().toString()));
 
+            // Save EditDetails with corresponding content in Map
+            // So that all correct exercises updated if details change
             Map<String, EditText> editTexts = new HashMap<>();
             editTexts.put("name", nameEditText);
             editTexts.put("sets", setsEditText);
@@ -149,9 +154,13 @@ public class EditWorkout extends AppCompatActivity {
     }
 
     private void saveButFunc(@NonNull View v) {
+        // Attempt to update details, ensuring they are valid
+        // Try-catch used for Integer.parseInt(), so it only works if inputs are valid numbers
         try {
             if (!workoutNameEditText.getText().toString().equals("")) {
                 List<Exercise> updatedExercises = new ArrayList<>();
+
+                // Get each individual exercise details from Map and save to ArrayList
                 for (Exercise exercise : exerciseEditTextsMap.keySet()) {
                     Map<String, EditText> editTexts = exerciseEditTextsMap.get(exercise);
                     assert editTexts != null;
@@ -161,10 +170,14 @@ public class EditWorkout extends AppCompatActivity {
                             Integer.parseInt(Objects.requireNonNull(editTexts.get("restTime")).getText().toString()));
                     updatedExercises.add(updatedExercise);
                 }
+
+                // Make new Workout and set ID to same as selected workout to overwrite in database
                 Workout updatedWorkout = new Workout(workoutNameEditText.getText().toString(), updatedExercises);
                 updatedWorkout.setId(currentWorkout.getId());
                 workoutDBHandler.updateWorkout(updatedWorkout);
                 sendToast("Changes saved.");
+
+                // Restart activity
                 this.finish();
                 startActivity(getIntent());
             } else {
@@ -177,6 +190,7 @@ public class EditWorkout extends AppCompatActivity {
 
     private void discardButFunc(@NonNull View v) {
         sendToast("Changes discarded.");
+        // Restart activity
         this.finish();
         startActivity(getIntent());
     }
@@ -184,11 +198,13 @@ public class EditWorkout extends AppCompatActivity {
     private void deleteWorkoutButFunc(@NonNull View v) {
         workoutDBHandler.removeWorkout(currentWorkout);
         sendToast("Workout deleted.");
+        // Restart activity
         this.finish();
         startActivity(getIntent());
     }
 
     private void sendToast(String message) {
+        // Send a toast, along with a vibration to notify them of a action they are attempting to perform / have performed
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));

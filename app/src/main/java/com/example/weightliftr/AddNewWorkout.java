@@ -45,6 +45,7 @@ public class AddNewWorkout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Set base activity details and information
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_add_new_workout);
@@ -66,19 +67,22 @@ public class AddNewWorkout extends AppCompatActivity {
                 startActivity(new Intent(AddNewWorkout.this, MainActivity.class))
         );
 
+        // Set adapter for changing what is shown on screen when an exercise has been added and approved
         exerciseAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, exerciseNames);
         addedExList.setAdapter(exerciseAdapter);
 
         newExBut.setOnClickListener(this::newExFunc);
-
         createBut.setOnClickListener(this::createFunc);
     }
 
     private void newExFunc(@NonNull View v) {
         if (addExLayout.getVisibility() == View.GONE) {
+            // Show relevant exercise addition inputs
             addExLayout.setVisibility(View.VISIBLE);
             newExBut.setText(R.string.new_ex_adding);
         } else {
+            // Add the exercise to the workout, but only if given details are valid
+            // Try-catch used for Integer.parseInt(), so it only works if inputs are valid numbers
             try {
                 if (!exNameEditText.getText().toString().equals("")
                         && !exSetsEditText.getText().toString().equals("")
@@ -108,6 +112,7 @@ public class AddNewWorkout extends AppCompatActivity {
 
     private void createFunc(@NonNull View v) {
         EditText workoutNameIn = findViewById(R.id.workoutNameIn);
+        // Create workout, only if fields aren't empty
         if (workoutNameIn.getText().toString().equals("")) {
             sendToast("Workout name field empty!");
         } else if (exercisesToAdd.isEmpty()) {
@@ -115,12 +120,14 @@ public class AddNewWorkout extends AppCompatActivity {
         } else {
             Workout w = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
             workoutDBHandler.insertWorkout(w);
+            // Reset activity
             this.finish();
             startActivity(getIntent());
         }
     }
 
     private void sendToast(String message) {
+        // Send a toast, along with a vibration to notify them of a action they are attempting to perform / have performed
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(VibrationEffect.createOneShot(300, VibrationEffect.DEFAULT_AMPLITUDE));

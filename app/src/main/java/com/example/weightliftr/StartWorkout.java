@@ -3,7 +3,12 @@ package com.example.weightliftr;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -40,6 +45,8 @@ public class StartWorkout extends AppCompatActivity {
     private Workout currentWorkout;
     private int currentExerciseNum;
     private int currentSetNum;
+    private NotificationCompat.Builder builder;
+    private boolean isNotificationShown;
 
     private int totalExercises;
     private int totalSets;
@@ -48,21 +55,24 @@ public class StartWorkout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Set base activity details and information
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein, R.anim.fadeout);
         setContentView(R.layout.activity_start_workout);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         WorkoutDBHandler workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
+        createNotification();
 
         Button backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v ->
                 startActivity(new Intent(StartWorkout.this, MainActivity.class))
         );
 
-        linearLayout = findViewById(R.id.startLinearLayout);
         workouts = workoutDBHandler.getAllWorkouts();
 
+        // Display all workout options from LinearLayout
+        linearLayout = findViewById(R.id.startLinearLayout);
         for (int i = 0; i < workouts.size(); i++) {
             View view = LayoutInflater.from(this)
                     .inflate(R.layout.start_action_list_item, linearLayout, false);
@@ -80,6 +90,7 @@ public class StartWorkout extends AppCompatActivity {
     }
 
     private void startButFunc(@NonNull View v) {
+        // Once a workout has been selected, clear screen and show new View (from same LinearLayout)
         linearLayout.removeAllViews();
         View newView = getLayoutInflater().inflate(R.layout.workout_in_progress, linearLayout, false);
         linearLayout.addView(newView);
@@ -93,6 +104,7 @@ public class StartWorkout extends AppCompatActivity {
         Button finishSetBut = newView.findViewById(R.id.finishSetBut);
         setTimerTextView = newView.findViewById(R.id.setTimerTextView);
 
+        // Set initial relevant details in TextViews
         titleTextView.setText(currentWorkout.getName());
         currentExerciseNum = 0;
         totalExercises = currentWorkout.getExercises().size();
@@ -105,6 +117,7 @@ public class StartWorkout extends AppCompatActivity {
         restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();
         setTimerTextView.setText(R.string.start_next_set);
 
+        // Set a countdown timer based on the exercises given rest time
         countDownTimer = new CountDownTimer(restTime * 1000L, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -113,6 +126,8 @@ public class StartWorkout extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
+                // Notify user their next set should start now, using a Toast and vibration
+                showNotification();
                 setTimerTextView.setText(R.string.start_next_set);
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -149,11 +164,52 @@ public class StartWorkout extends AppCompatActivity {
             totalSets = currentWorkout.getExercises().get(currentExerciseNum).getSets();
             setsTextView.setText(getString(R.string.current_set_num, currentSetNum, totalSets));
             totalReps = currentWorkout.getExercises().get(currentExerciseNum).getReps();
-            repsTextView.setText(String.valueOf(totalReps));
+            repsTextView.setText(getString(R.string.current_reps_num, totalReps));
             restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();
             countDownTimer.start();
         } else {
             Toast.makeText(StartWorkout.this, "Start a set first!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void createNotification() {
+        // Define the notification channel
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("channel_main", "Main Channel", NotificationManager.IMPORTANCE_HIGH);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        // Create the notification
+        builder = new NotificationCompat.Builder(this, "channel_main")
+                .setSmallIcon(R.drawable.ic_baseline_notifications_active)
+                .setContentTitle("WeightLiftr")
+                .setContentText("Time for your next set!")
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);
+
+        isNotificationShown = false;
+    }
+
+    private void showNotification() {
+        // Show the notification only if it's not already shown
+        if (!hasWindowFocus()) {
+            if (!isNotificationShown) {
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+                notificationManager.notify(1, builder.build());
+                isNotificationShown = true;
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Cancel the notification if it's shown
+        if (isNotificationShown) {
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+            notificationManager.cancel(1);
+            isNotificationShown = false;
         }
     }
 }
