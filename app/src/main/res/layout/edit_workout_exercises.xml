@@ -7,6 +7,8 @@
     <EditText
         android:id="@+id/nameEditText"
         android:hint="@string/exercise_name"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint_grey"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -17,6 +19,8 @@
     <EditText
         android:id="@+id/setsEditText"
         android:hint="@string/exercise_sets"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint_grey"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -27,6 +31,8 @@
     <EditText
         android:id="@+id/repsEditText"
         android:hint="@string/exercise_reps"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint_grey"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -37,6 +43,8 @@
     <EditText
         android:id="@+id/restTimeEditText"
         android:hint="@string/exercise_rest_time"
+        android:textColor="@color/white"
+        android:textColorHint="@color/edit_hint_grey"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

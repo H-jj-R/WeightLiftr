@@ -35,7 +35,7 @@ public class EditWorkout extends AppCompatActivity {
 
     private WorkoutDBHandler workoutDBHandler;
 
-    private LinearLayout linearLayout;
+    private LinearLayout editLinearLayout;
     private EditText workoutNameEditText;
 
     private List<Workout> allWorkouts;
@@ -85,28 +85,28 @@ public class EditWorkout extends AppCompatActivity {
         allWorkouts = workoutDBHandler.getAllWorkouts();
 
         // Display all workout options from LinearLayout
-        linearLayout = findViewById(R.id.editLinearLayout);
+        editLinearLayout = findViewById(R.id.editLinearLayout);
         for (int i = 0; i < allWorkouts.size(); i++) {
-            View view = LayoutInflater.from(this)
-                    .inflate(R.layout.start_action_list_item, linearLayout, false);
+            View selectableView = LayoutInflater.from(this)
+                    .inflate(R.layout.start_action_list_item, editLinearLayout, false);
 
-            TextView workoutName = view.findViewById(R.id.workoutName);
-            ImageButton startBut = view.findViewById(R.id.startBut);
+            TextView workoutName = selectableView.findViewById(R.id.workoutName);
+            ImageButton startBut = selectableView.findViewById(R.id.startBut);
 
             workoutName.setText(allWorkouts.get(i).getName());
             startBut.setImageResource(R.drawable.ic_baseline_edit);
             startBut.setId(i);
 
             startBut.setOnClickListener(this::startButFunc);
-            linearLayout.addView(view);
+            editLinearLayout.addView(selectableView);
         }
     }
 
     private void startButFunc(@NonNull View v) {
         // Once a workout has been selected, clear screen and show new View (from same LinearLayout)
-        linearLayout.removeAllViews();
-        View baseEditView = getLayoutInflater().inflate(R.layout.edit_workout_details, linearLayout, false);
-        linearLayout.addView(baseEditView);
+        editLinearLayout.removeAllViews();
+        View baseEditView = getLayoutInflater().inflate(R.layout.edit_workout_details, editLinearLayout, false);
+        editLinearLayout.addView(baseEditView);
 
         currentWorkout = allWorkouts.get(v.getId());
         workoutNameEditText = baseEditView.findViewById(R.id.workoutNameEditText);

@@ -8,7 +8,6 @@ import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -38,14 +37,14 @@ public class StartWorkout extends AppCompatActivity {
     private TextView setsTextView;
     private TextView repsTextView;
     private TextView setTimerTextView;
-    private LinearLayout linearLayout;
+    private LinearLayout startLinearLayout;
 
-    private CountDownTimer countDownTimer;
-    private List<Workout> workouts;
+    private CountDownTimer restTimer;
+    private List<Workout> allWorkouts;
     private Workout currentWorkout;
     private int currentExerciseNum;
     private int currentSetNum;
-    private NotificationCompat.Builder builder;
+    private NotificationCompat.Builder notificationBuilder;
     private boolean isNotificationShown;
 
     private int totalExercises;
@@ -69,40 +68,40 @@ public class StartWorkout extends AppCompatActivity {
                 startActivity(new Intent(StartWorkout.this, MainActivity.class))
         );
 
-        workouts = workoutDBHandler.getAllWorkouts();
+        allWorkouts = workoutDBHandler.getAllWorkouts();
 
         // Display all workout options from LinearLayout
-        linearLayout = findViewById(R.id.startLinearLayout);
-        for (int i = 0; i < workouts.size(); i++) {
-            View view = LayoutInflater.from(this)
-                    .inflate(R.layout.start_action_list_item, linearLayout, false);
+        startLinearLayout = findViewById(R.id.startLinearLayout);
+        for (int i = 0; i < allWorkouts.size(); i++) {
+            View selectableView = LayoutInflater.from(this)
+                    .inflate(R.layout.start_action_list_item, startLinearLayout, false);
 
-            TextView workoutName = view.findViewById(R.id.workoutName);
-            ImageButton startBut = view.findViewById(R.id.startBut);
+            TextView workoutName = selectableView.findViewById(R.id.workoutName);
+            ImageButton startBut = selectableView.findViewById(R.id.startBut);
 
-            workoutName.setText(workouts.get(i).getName());
+            workoutName.setText(allWorkouts.get(i).getName());
             startBut.setId(i);
             startBut.setImageResource(R.drawable.ic_play_circle_outline);
             startBut.setOnClickListener(this::startButFunc);
 
-            linearLayout.addView(view);
+            startLinearLayout.addView(selectableView);
         }
     }
 
     private void startButFunc(@NonNull View v) {
         // Once a workout has been selected, clear screen and show new View (from same LinearLayout)
-        linearLayout.removeAllViews();
-        View newView = getLayoutInflater().inflate(R.layout.workout_in_progress, linearLayout, false);
-        linearLayout.addView(newView);
-        currentWorkout = workouts.get(v.getId());
+        startLinearLayout.removeAllViews();
+        View startView = getLayoutInflater().inflate(R.layout.workout_in_progress, startLinearLayout, false);
+        startLinearLayout.addView(startView);
+        currentWorkout = allWorkouts.get(v.getId());
 
-        TextView titleTextView = newView.findViewById(R.id.titleTextView);
-        exerciseTextView = newView.findViewById(R.id.exerciseTextView);
-        setsTextView = newView.findViewById(R.id.setsTextView);
-        repsTextView = newView.findViewById(R.id.repsTextView);
-        Button startSetBut = newView.findViewById(R.id.startSetBut);
-        Button finishSetBut = newView.findViewById(R.id.finishSetBut);
-        setTimerTextView = newView.findViewById(R.id.setTimerTextView);
+        TextView titleTextView = startView.findViewById(R.id.titleTextView);
+        exerciseTextView = startView.findViewById(R.id.exerciseTextView);
+        setsTextView = startView.findViewById(R.id.setsTextView);
+        repsTextView = startView.findViewById(R.id.repsTextView);
+        Button startSetBut = startView.findViewById(R.id.startSetBut);
+        Button finishSetBut = startView.findViewById(R.id.finishSetBut);
+        setTimerTextView = startView.findViewById(R.id.setTimerTextView);
 
         // Set initial relevant details in TextViews
         titleTextView.setText(currentWorkout.getName());
@@ -117,8 +116,49 @@ public class StartWorkout extends AppCompatActivity {
         restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();
         setTimerTextView.setText(R.string.start_next_set);
 
+        createTimer();
+        startSetBut.setOnClickListener(this::startSetFunc);
+        finishSetBut.setOnClickListener(this::finishSetFunc);
+    }
+
+    private void startSetFunc(View v) {
+        // User has notified they have started their set
+        if (setTimerTextView.getText() != getText(R.string.set_in_progress)) {
+            restTimer.cancel();
+            setTimerTextView.setText(R.string.set_in_progress);
+        }
+    }
+
+    private void finishSetFunc(View v) {
+        // User finishes their current set
+        if (setTimerTextView.getText() == getText(R.string.set_in_progress)) {
+            currentSetNum++;
+            // If no more sets, next exercise
+            if (currentSetNum > totalSets) {
+                currentExerciseNum++;
+                currentSetNum = 1;
+                // If no more exercises, reset activity state
+                if (currentExerciseNum > totalExercises) {
+                    finish();
+                    startActivity(getIntent());
+                }
+            }
+            // Update displayed exercise details
+            exerciseTextView.setText(currentWorkout.getExercises().get(currentExerciseNum).getName());
+            totalSets = currentWorkout.getExercises().get(currentExerciseNum).getSets();
+            setsTextView.setText(getString(R.string.current_set_num, currentSetNum, totalSets));
+            totalReps = currentWorkout.getExercises().get(currentExerciseNum).getReps();
+            repsTextView.setText(getString(R.string.current_reps_num, totalReps));
+            restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();
+            restTimer.start();
+        } else {
+            Toast.makeText(StartWorkout.this, "Start a set first!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void createTimer() {
         // Set a countdown timer based on the exercises given rest time
-        countDownTimer = new CountDownTimer(restTime * 1000L, 1000) {
+        restTimer = new CountDownTimer(restTime * 1000L, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 int secsLeft = (int) (millisUntilFinished / 1000);
@@ -126,7 +166,8 @@ public class StartWorkout extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-                // Notify user their next set should start now, using a Toast and vibration
+                // Notify user their next set should start now, using a Toast and vibration,
+                // or if the app is not in the foreground, using a notification
                 showNotification();
                 setTimerTextView.setText(R.string.start_next_set);
                 Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -137,51 +178,19 @@ public class StartWorkout extends AppCompatActivity {
                 }
             }
         };
-
-        startSetBut.setOnClickListener(this::startSetFunc);
-        finishSetBut.setOnClickListener(this::finishSetFunc);
-    }
-
-    private void startSetFunc(View v) {
-        if (setTimerTextView.getText() != getText(R.string.set_in_progress)) {
-            countDownTimer.cancel();
-            setTimerTextView.setText(R.string.set_in_progress);
-        }
-    }
-
-    private void finishSetFunc(View v) {
-        if (setTimerTextView.getText() == getText(R.string.set_in_progress)) {
-            currentSetNum++;
-            if (currentSetNum > totalSets) {
-                currentExerciseNum++;
-                currentSetNum = 1;
-                if (currentExerciseNum > totalExercises) {
-                    finish();
-                    startActivity(getIntent());
-                }
-            }
-            exerciseTextView.setText(currentWorkout.getExercises().get(currentExerciseNum).getName());
-            totalSets = currentWorkout.getExercises().get(currentExerciseNum).getSets();
-            setsTextView.setText(getString(R.string.current_set_num, currentSetNum, totalSets));
-            totalReps = currentWorkout.getExercises().get(currentExerciseNum).getReps();
-            repsTextView.setText(getString(R.string.current_reps_num, totalReps));
-            restTime = currentWorkout.getExercises().get(currentExerciseNum).getRestTime();
-            countDownTimer.start();
-        } else {
-            Toast.makeText(StartWorkout.this, "Start a set first!", Toast.LENGTH_SHORT).show();
-        }
     }
 
     private void createNotification() {
         // Define notification channel - required to send notifications in API >= 26
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("channel_main", "Main Channel", NotificationManager.IMPORTANCE_HIGH);
+            NotificationChannel channel = new NotificationChannel(
+                    "channel_primary", "Primary Channel", NotificationManager.IMPORTANCE_HIGH);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
 
         // Create the notification itself
-        builder = new NotificationCompat.Builder(this, "channel_main")
+        notificationBuilder = new NotificationCompat.Builder(this, "channel_primary")
                 .setSmallIcon(R.drawable.ic_baseline_notifications_active)
                 .setContentTitle("WeightLiftr")
                 .setContentText("Time for your next set!")
@@ -194,8 +203,8 @@ public class StartWorkout extends AppCompatActivity {
     private void showNotification() {
         // Show the notification only if it's not already shown and the app is in the background
         if (!hasWindowFocus() && !isNotificationShown) {
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            notificationManager.notify(1, builder.build());
+            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+            notificationManagerCompat.notify(1, notificationBuilder.build());
             isNotificationShown = true;
         }
     }
@@ -205,8 +214,8 @@ public class StartWorkout extends AppCompatActivity {
         super.onResume();
         // When the app is brought back to the foreground, cancel the notification
         if (isNotificationShown) {
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            notificationManager.cancel(1);
+            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+            notificationManagerCompat.cancel(1);
             isNotificationShown = false;
         }
     }
@@ -214,10 +223,10 @@ public class StartWorkout extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // When the app is brought back to the foreground, cancel the notification
+        // When the app is terminated, cancel the notification
         if (isNotificationShown) {
-            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-            notificationManager.cancel(1);
+            NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+            notificationManagerCompat.cancel(1);
             isNotificationShown = false;
         }
     }

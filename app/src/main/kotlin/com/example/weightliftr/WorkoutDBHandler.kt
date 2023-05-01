@@ -17,6 +17,7 @@ import java.lang.reflect.Type
  */
 class WorkoutDBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
+    // Constants used for the database
     companion object {
         private const val DATABASE_NAME = "workouts.db"
         private const val DATABASE_VERSION = 1
@@ -27,8 +28,10 @@ class WorkoutDBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         private const val COLUMN_EXERCISES = "exercises"
     }
 
+    // Use Gson library to store exercise object in database
     private val gson = Gson()
 
+    // Initial database creation
     override fun onCreate(db: SQLiteDatabase) {
         val createTable = "CREATE TABLE $TABLE_WORKOUTS " +
                 "($COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -37,11 +40,13 @@ class WorkoutDBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db.execSQL(createTable)
     }
 
+    // Drop the existing table and create a new one on upgrade of the database
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL("DROP TABLE IF EXISTS $TABLE_WORKOUTS")
         onCreate(db)
     }
 
+    // Insert a new given workout to the database
     fun insertWorkout(workout: Workout) {
         val db = writableDatabase
         val values = ContentValues()
@@ -53,6 +58,7 @@ class WorkoutDBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db.close()
     }
 
+    // Update details of an existing workout
     fun updateWorkout(workout: Workout) {
         val db = writableDatabase
         val values = ContentValues()
@@ -64,6 +70,7 @@ class WorkoutDBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db.close()
     }
 
+    // Remove a given workout from the database
     fun removeWorkout(workout: Workout) {
         val db = writableDatabase
         val args = arrayOf(workout.id.toString())
@@ -71,6 +78,7 @@ class WorkoutDBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NA
         db.close()
     }
 
+    // Retrieve all workouts currently in the database
     fun getAllWorkouts(): List<Workout> {
         val db = readableDatabase
         val cursor: Cursor = db.query(TABLE_WORKOUTS, null, null,

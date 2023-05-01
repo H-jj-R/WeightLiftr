@@ -118,8 +118,8 @@ public class AddNewWorkout extends AppCompatActivity {
         } else if (exercisesToAdd.isEmpty()) {
             sendToast("No exercises have been added!");
         } else {
-            Workout w = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
-            workoutDBHandler.insertWorkout(w);
+            Workout workoutToAdd = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
+            workoutDBHandler.insertWorkout(workoutToAdd);
             // Reset activity
             this.finish();
             startActivity(getIntent());

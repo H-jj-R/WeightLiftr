@@ -51,6 +51,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="535dp"
+        android:contentDescription="@string/ex_choice_scroll_view_desc"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -22,6 +22,7 @@
     <string name="save">Save</string>
     <string name="delete_workout">Delete Workout?</string>
     <string name="exercise_scroll_view_desc">Details of each exercise in the chosen workout.</string>
+    <string name="ex_choice_scroll_view_desc">A list of created exercises to choose from.</string>
 
     <!-- Used only in activity_main -->
     <string name="suggested_for_today">Suggested For Today</string>
@@ -30,6 +31,7 @@
     <string name="nav_edit_workout">Edit an Existing Workout</string>
     <string name="nav_view_workouts">View All Current Workouts</string>
     <string name="nav_start_workout">Start a Workout</string>
+    <string name="suggested_button_desc">Suggests and points to another activity.</string>
 
     <!-- Used only in activity_start_workout -->
     <string name="current_set_num">Current Set: %1$d / %2$d</string>

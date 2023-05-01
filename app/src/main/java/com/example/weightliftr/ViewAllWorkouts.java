@@ -41,38 +41,40 @@ public class ViewAllWorkouts extends AppCompatActivity {
                 startActivity(new Intent(ViewAllWorkouts.this, MainActivity.class))
         );
 
-        List<Workout> workouts = workoutDBHandler.getAllWorkouts();
+        List<Workout> allWorkouts = workoutDBHandler.getAllWorkouts();
 
-        LinearLayout linearLayout = findViewById(R.id.startLinearLayout);
-        for (int i = 0; i < workouts.size(); i++) {
-            View view = LayoutInflater.from(this).inflate(R.layout.read_only_list_item, linearLayout, false);
-            exercises = workouts.get(i).getExercises();
-            TextView itemTitle = view.findViewById(R.id.workoutNameTextView);
-            itemTitle.setText(workouts.get(i).getName());
-            linearLayout.addView(view);
+        // Add every workout to the LinearLayout
+        LinearLayout startLinearLayout = findViewById(R.id.startLinearLayout);
+        for (int i = 0; i < allWorkouts.size(); i++) {
+            View workoutView = LayoutInflater.from(this)
+                    .inflate(R.layout.read_only_list_item, startLinearLayout, false);
+            exercises = allWorkouts.get(i).getExercises();
+            TextView itemTitle = workoutView.findViewById(R.id.workoutNameTextView);
+            itemTitle.setText(allWorkouts.get(i).getName());
+            startLinearLayout.addView(workoutView);
 
-            view.setTag(workouts.get(i));
-            view.setOnClickListener(this::clickViewFunc);
+            workoutView.setTag(allWorkouts.get(i));
+            workoutView.setOnClickListener(this::clickViewFunc);
         }
     }
 
+    // If a workout is clicked on, display all extra details for that workout
     private void clickViewFunc(@NonNull View v) {
-        @SuppressLint("CutPasteId") View extraDetailsView = v.findViewById(R.id.exercisesTextView);
-        @SuppressLint("CutPasteId") TextView extraDetailsTextView = v.findViewById(R.id.exercisesTextView);
+        @SuppressLint("CutPasteId") View exercisesView = v.findViewById(R.id.exercisesTextView);
+        @SuppressLint("CutPasteId") TextView exercisesTextView = v.findViewById(R.id.exercisesTextView);
 
-        if (extraDetailsView.getVisibility() == View.GONE) {
+        if (exercisesView.getVisibility() == View.GONE) {
             for (int i = 0; i < exercises.size(); i++) {
                 List<Exercise> exercises = ((Workout) v.getTag()).getExercises();
-                 extraDetailsTextView.setText(
-                         getString(R.string.extra_workout_details, extraDetailsTextView.getText(),
+                exercisesTextView.setText(getString(R.string.extra_workout_details, exercisesTextView.getText(),
                                  exercises.get(i).getName(), exercises.get(i).getSets(), exercises.get(i).getReps(),
                                  exercises.get(i).getRestTime()));
             }
-            extraDetailsView.setVisibility(View.VISIBLE);
+            exercisesView.setVisibility(View.VISIBLE);
 
         } else {
-            extraDetailsTextView.setText("");
-            extraDetailsView.setVisibility(View.GONE);
+            exercisesTextView.setText("");
+            exercisesView.setVisibility(View.GONE);
         }
     }
 }
