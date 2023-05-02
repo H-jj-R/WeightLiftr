@@ -1,9 +1,6 @@
-WeightLiftr (In Active Development)
--
+# WeightLiftr
 
 
-Description
--
-
+## Description
 A workout tracker app, developed in Android Studio.
 
