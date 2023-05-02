@@ -71,7 +71,6 @@ public class ViewAllWorkouts extends AppCompatActivity {
                                  exercises.get(i).getRestTime()));
             }
             exercisesView.setVisibility(View.VISIBLE);
-
         } else {
             exercisesTextView.setText("");
             exercisesView.setVisibility(View.GONE);

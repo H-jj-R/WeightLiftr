@@ -52,31 +52,6 @@ public class EditWorkout extends AppCompatActivity {
         getSupportActionBar().setCustomView(R.layout.action_bar_layout);
         workoutDBHandler = new WorkoutDBHandler(this.getApplicationContext());
 
-        // TODO: REMOVE BEFORE FINISHING
-//        List<Exercise> exercises= new ArrayList<>();
-//        exercises.add(new Exercise("Quad Pull", 3, 10, 60));
-//        exercises.add(new Exercise("Squat", 3, 10, 60));
-//        exercises.add(new Exercise("Calf Raise", 3, 15, 60));
-//
-//        Workout w = new Workout("Leg Workout", exercises);
-//        workoutDBHandler.insertWorkout(w);
-//
-//        List<Exercise> exercises1 = new ArrayList<>();
-//        exercises1.add(new Exercise("Bicep Curls", 4, 10, 35));
-//        exercises1.add(new Exercise("Tricep Pulls", 4, 10, 35));
-//        exercises1.add(new Exercise("Forearm Stretches", 3, 15, 35));
-//
-//        Workout w1 = new Workout("Ind. Muscle Workout", exercises1);
-//        workoutDBHandler.insertWorkout(w1);
-//
-//        List<Exercise> exercises2 = new ArrayList<>();
-//        exercises2.add(new Exercise("Bench Press", 3, 10, 110));
-//        exercises2.add(new Exercise("Seated Row", 3, 10, 110));
-//        exercises2.add(new Exercise("Lat Pull", 2, 15, 110));
-//
-//        Workout w2 = new Workout("Upper Workout", exercises2);
-//        workoutDBHandler.insertWorkout(w2);
-
         Button backBut = findViewById(R.id.backBut);
         backBut.setOnClickListener(v ->
                 startActivity(new Intent(EditWorkout.this, MainActivity.class))

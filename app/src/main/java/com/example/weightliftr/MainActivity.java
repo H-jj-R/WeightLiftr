@@ -11,11 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.Objects;
 import java.util.Random;
 
-// TODO: Improve comments in all code
-// TODO: Improve variable names and code structure
-// TODO: Style every activity better
-// TODO: (If time) Improve XML for handling of other devices
-
 /**
  * Activity used as a menu screen, which links all activities.
  */
@@ -50,16 +45,16 @@ public class MainActivity extends AppCompatActivity {
                                              EditWorkout.class,
                                              ViewAllWorkouts.class };
 
-        // Set suggestion buttons to direct to random activities
+        // Set suggestion buttons to direct to random activities,
+        // ensuring they direct to different activities
         int randomIndex1 = new Random().nextInt(activityClasses.length);
-        suggestionBut1.setText(getString(R.string.suggestion_text, activityNames[randomIndex1]));
-        setButtonClickEvent(suggestionBut1, activityClasses[randomIndex1]);
-
-        // Ensure suggestion buttons direct to different activities
         int randomIndex2;
         do {
             randomIndex2 = new Random().nextInt(activityClasses.length);
         } while (randomIndex2 == randomIndex1);
+
+        suggestionBut1.setText(getString(R.string.suggestion_text, activityNames[randomIndex1]));
+        setButtonClickEvent(suggestionBut1, activityClasses[randomIndex1]);
         suggestionBut2.setText(getString(R.string.suggestion_text, activityNames[randomIndex2]));
         setButtonClickEvent(suggestionBut2, activityClasses[randomIndex2]);
     }
