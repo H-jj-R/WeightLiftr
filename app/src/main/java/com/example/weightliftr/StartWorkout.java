@@ -64,9 +64,10 @@ public class StartWorkout extends AppCompatActivity {
         createNotification();
 
         Button backBut = findViewById(R.id.backBut);
-        backBut.setOnClickListener(v ->
-                startActivity(new Intent(StartWorkout.this, MainActivity.class))
-        );
+        backBut.setOnClickListener(v -> {
+            if (restTimer != null) restTimer.cancel();
+            startActivity(new Intent(StartWorkout.this, MainActivity.class));
+        });
 
         allWorkouts = workoutDBHandler.getAllWorkouts();
 
