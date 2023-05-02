@@ -193,7 +193,7 @@ public class StartWorkout extends AppCompatActivity {
         // Create the notification itself
         notificationBuilder = new NotificationCompat.Builder(this, "channel_primary")
                 .setSmallIcon(R.drawable.ic_baseline_notifications_active)
-                .setContentTitle("WeightLiftr")
+                .setContentTitle(getString(R.string.app_name))
                 .setContentText("Time for your next set!")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true);

@@ -9,6 +9,7 @@
     <string name="exercise_reps">Reps</string>
     <string name="exercise_rest_time">Rest Time (Seconds)</string>
     <string name="image_button_desc">Press To Select</string>
+    <string name="ex_choice_scroll_view_desc">A list of created exercises to choose from.</string>
 
     <!-- Used only in activity_add_new_workout -->
     <string name="create_new_workout">Create New Workout</string>
@@ -22,7 +23,6 @@
     <string name="save">Save</string>
     <string name="delete_workout">Delete Workout?</string>
     <string name="exercise_scroll_view_desc">Details of each exercise in the chosen workout.</string>
-    <string name="ex_choice_scroll_view_desc">A list of created exercises to choose from.</string>
 
     <!-- Used only in activity_main -->
     <string name="suggested_for_today">Suggested For Today</string>
@@ -34,6 +34,7 @@
     <string name="suggested_button_desc">Suggests and points to another activity.</string>
 
     <!-- Used only in activity_start_workout -->
+    <string name="start_workout">Start Workout</string>
     <string name="current_set_num">Current Set: %1$d / %2$d</string>
     <string name="current_reps_num">Reps: %1$d</string>
     <string name="start_next_set">Start Next Set!</string>
