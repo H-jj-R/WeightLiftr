@@ -8,7 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="button_color">#C31D2B</color>
-    <color name="extra_details_grey">#81FFFFFF</color>
+    <color name="extra_details_grey">#C8FFFFFF</color>
     <color name="ic_launcher_background_redVer">#F12738</color>
     <color name="separator_grey">#8FFFFFFF</color>
     <color name="edit_hint_grey">#A1FFFFFF</color>

@@ -8,7 +8,7 @@
         android:id="@+id/workoutNameTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#B7FFFFFF"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:padding="16dp"
         android:textStyle="bold" />
