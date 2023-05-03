@@ -120,6 +120,7 @@ public class AddNewWorkout extends AppCompatActivity {
         } else {
             Workout workoutToAdd = new Workout(workoutNameIn.getText().toString(), exercisesToAdd);
             workoutDBHandler.insertWorkout(workoutToAdd);
+            sendToast("Workout Added!");
             // Reset activity
             this.finish();
             startActivity(getIntent());
